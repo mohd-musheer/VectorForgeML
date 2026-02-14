@@ -1,0 +1,9 @@
+.Rhistory
+.RData
+.Rproj.user
+*.tar.gz
+*.zip
+*.o
+*.dll
+*.so
+*.exe

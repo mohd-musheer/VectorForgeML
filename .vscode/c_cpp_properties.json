@@ -3,8 +3,12 @@
     {
       "name": "windows-gcc-x86",
       "includePath": [
-        "${workspaceFolder}/**"
-      ],
+        "${workspaceFolder}/**",
+        "C:/Program Files/R/R-4.5.1/include",
+        "C:/Users/mushe/AppData/Local/R/win-library/4.5/Rcpp/include",
+        "C:/rtools44/x86_64-w64-mingw32.static.posix/include"
+      ]
+,
       "compilerPath": "C:/MinGW/bin/gcc.exe",
       "cStandard": "${default}",
       "cppStandard": "${default}",
