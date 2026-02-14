@@ -1,8 +1,8 @@
 library(Rcpp)
 
 Sys.setenv(
-PKG_CXXFLAGS="-fopenmp -O3",
-PKG_LIBS="-fopenmp"
+  PKG_CXXFLAGS="-O3 -march=native -funroll-loops -ffast-math -flto",
+  PKG_LIBS="-lRblas"
 )
 
 

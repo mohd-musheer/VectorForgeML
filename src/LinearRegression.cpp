@@ -1,192 +1,156 @@
 #include <Rcpp.h>
-#ifdef _OPENMP
-#include <omp.h>
-#endif
+#include <vector>
+#include <cmath>
+#include <R_ext/BLAS.h>
 
 using namespace Rcpp;
 using namespace std;
 
-
-// =========================
-// MATRIX HELPERS
-// =========================
-
-vector<vector<double>> toStd(NumericMatrix X){
-    int r=X.nrow(), c=X.ncol();
-    vector<vector<double>> out(r, vector<double>(c));
-
-    #pragma omp parallel for
-    for(int i=0;i<r;i++)
-        for(int j=0;j<c;j++)
-            out[i][j]=X(i,j);
-
-    return out;
-}
-
-
-// transpose
-vector<vector<double>> transpose(const vector<vector<double>>& A){
-    int r=A.size(), c=A[0].size();
-    vector<vector<double>> T(c, vector<double>(r));
-
-    #pragma omp parallel for
-    for(int i=0;i<r;i++)
-        for(int j=0;j<c;j++)
-            T[j][i]=A[i][j];
-
-    return T;
-}
-
-
-// multiply
-vector<vector<double>> matmul(
-    const vector<vector<double>>& A,
-    const vector<vector<double>>& B){
-
-    int r=A.size(), c=B[0].size(), k=B.size();
-    vector<vector<double>> C(r, vector<double>(c,0));
-
-    #pragma omp parallel for
-    for(int i=0;i<r;i++)
-        for(int j=0;j<c;j++)
-            for(int t=0;t<k;t++)
-                C[i][j]+=A[i][t]*B[t][j];
-
-    return C;
-}
-
-
-// =========================
-// CHOLESKY SOLVER
-// solves Ax=b
-// =========================
-
-vector<double> choleskySolve(
-    vector<vector<double>> A,
-    vector<double> b){
-
-    int n=A.size();
-
-    vector<vector<double>> L(n, vector<double>(n,0));
-
-    // decomposition
-    for(int i=0;i<n;i++){
-        for(int j=0;j<=i;j++){
-
-            double s=0;
-            for(int k=0;k<j;k++)
-                s+=L[i][k]*L[j][k];
-
-            if(i==j)
-                L[i][j]=sqrt(A[i][i]-s);
-            else
-                L[i][j]=(1.0/L[j][j])*(A[i][j]-s);
-        }
-    }
-
-    // forward solve Ly=b
-    vector<double> y(n);
-    for(int i=0;i<n;i++){
-        double s=0;
-        for(int k=0;k<i;k++)
-            s+=L[i][k]*y[k];
-        y[i]=(b[i]-s)/L[i][i];
-    }
-
-    // backward solve Lᵀx=y
-    vector<double> x(n);
-    for(int i=n-1;i>=0;i--){
-        double s=0;
-        for(int k=i+1;k<n;k++)
-            s+=L[k][i]*x[k];
-        x[i]=(y[i]-s)/L[i][i];
-    }
-
-    return x;
-}
-
-
-// =========================
-// MODEL CLASS
-// =========================
-
-class LinearRegression{
-public:
-
-    vector<double> W;
-
-    void fit(NumericMatrix X, NumericVector y){
-
-        auto Xs = toStd(X);
-
-        // add intercept
-        for(auto &row : Xs)
-            row.insert(row.begin(),1.0);
-
-        auto Xt = transpose(Xs);
-        auto XtX = matmul(Xt,Xs);
-
-        // ridge stabilization
-        for(size_t i=0;i<XtX.size();i++)
-            XtX[i][i]+=1e-8;
-
-        // XtY
-        vector<double> XtY(Xt.size(),0);
-
-        #pragma omp parallel for
-        for(size_t i=0;i<Xt.size();i++)
-            for(size_t j=0;j<Xt[0].size();j++)
-                XtY[i]+=Xt[i][j]*y[j];
-
-        // solve system
-        W = choleskySolve(XtX,XtY);
-    }
-
-
-
-    NumericVector predict(NumericMatrix X){
-
-        auto Xs = toStd(X);
-
-        for(auto &row : Xs)
-            row.insert(row.begin(),1.0);
-
-        NumericVector out(Xs.size());
-
-        #pragma omp parallel for
-        for(size_t i=0;i<Xs.size();i++){
-
-            double s=0;
-            for(size_t j=0;j<W.size();j++)
-                s+=Xs[i][j]*W[j];
-
-            out[i]=s;
-        }
-
-        return out;
-    }
+struct LinearModel {
+    vector<double> coef;
+    double intercept = 0.0;
 };
 
+static vector<double> solveCholesky(vector<double> A, vector<double> b, int n) {
+    for (int j = 0; j < n; ++j) {
+        double d = A[j + j * n];
+        for (int k = 0; k < j; ++k) {
+            const double ljk = A[j + k * n];
+            d -= ljk * ljk;
+        }
+        if (d <= 1e-12) {
+            d = 1e-12;
+        }
+        A[j + j * n] = std::sqrt(d);
 
+        for (int i = j + 1; i < n; ++i) {
+            double s = A[i + j * n];
+            for (int k = 0; k < j; ++k) {
+                s -= A[i + k * n] * A[j + k * n];
+            }
+            A[i + j * n] = s / A[j + j * n];
+        }
+    }
 
-// =========================
-// R WRAPPERS
-// =========================
+    for (int i = 0; i < n; ++i) {
+        double s = b[i];
+        for (int k = 0; k < i; ++k) {
+            s -= A[i + k * n] * b[k];
+        }
+        b[i] = s / A[i + i * n];
+    }
 
-// [[Rcpp::export]]
-SEXP lr_create(){
-    XPtr<LinearRegression> ptr(new LinearRegression(), true);
-    return ptr;
+    for (int i = n - 1; i >= 0; --i) {
+        double s = b[i];
+        for (int k = i + 1; k < n; ++k) {
+            s -= A[k + i * n] * b[k];
+        }
+        b[i] = s / A[i + i * n];
+    }
+    return b;
+}
+
+static vector<double> fitCoefNoIntercept(const NumericMatrix& X, const NumericVector& y) {
+    const int n = X.nrow();
+    const int p = X.ncol();
+    if (y.size() != n) {
+        stop("X and y must have the same number of rows");
+    }
+    if (p == 0) {
+        return {};
+    }
+
+    vector<double> XtX(static_cast<size_t>(p) * p, 0.0);
+    const char* trans = "T";
+    const char* notrans = "N";
+    const double one = 1.0;
+    const double zero = 0.0;
+    F77_CALL(dgemm)(
+        trans, notrans, &p, &p, &n,
+        &one, X.begin(), &n, X.begin(), &n, &zero, XtX.data(), &p
+        FCONE FCONE
+    );
+
+    vector<double> Xty(p, 0.0);
+    const int inc = 1;
+    F77_CALL(dgemv)(
+        trans, &n, &p, &one,
+        X.begin(), &n, y.begin(), &inc, &zero, Xty.data(), &inc
+        FCONE
+    );
+
+    for (int j = 0; j < p; ++j) {
+        XtX[j + j * p] += 1e-8;
+    }
+    return solveCholesky(std::move(XtX), std::move(Xty), p);
 }
 
 // [[Rcpp::export]]
-void lr_fit(SEXP model, NumericMatrix X, NumericVector y){
-    XPtr<LinearRegression> ptr(model);
-    ptr->fit(X,y);
+SEXP lr_create() {
+    XPtr<LinearModel> model(new LinearModel(), true);
+    return model;
 }
 
 // [[Rcpp::export]]
-NumericVector lr_predict(SEXP model, NumericMatrix X){
-    XPtr<LinearRegression> ptr(model);
-    return ptr->predict(X);
+void lr_fit(SEXP ptr, NumericMatrix X, NumericVector y) {
+    XPtr<LinearModel> model(ptr);
+    const int n = X.nrow();
+    const int p = X.ncol();
+    if (y.size() != n) {
+        stop("X and y must have the same number of rows");
+    }
+    if (n == 0) {
+        stop("X must have at least one row");
+    }
+
+    vector<double> meanX(p, 0.0);
+    for (int j = 0; j < p; ++j) {
+        meanX[j] = mean(X(_, j));
+    }
+    const double meanY = mean(y);
+
+    NumericMatrix Xc(n, p);
+    NumericVector yc(n);
+    for (int j = 0; j < p; ++j) {
+        const double mj = meanX[j];
+        for (int i = 0; i < n; ++i) {
+            Xc(i, j) = X(i, j) - mj;
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        yc[i] = y[i] - meanY;
+    }
+
+    model->coef = fitCoefNoIntercept(Xc, yc);
+    model->intercept = meanY;
+    for (int j = 0; j < p; ++j) {
+        model->intercept -= model->coef[j] * meanX[j];
+    }
+}
+
+// [[Rcpp::export]]
+NumericVector lr_predict(SEXP ptr, NumericMatrix X) {
+    XPtr<LinearModel> model(ptr);
+    const int n = X.nrow();
+    const int p = X.ncol();
+    if (static_cast<int>(model->coef.size()) != p) {
+        stop("Input feature count does not match trained model");
+    }
+
+    NumericVector pred(n, model->intercept);
+    const char* notrans = "N";
+    const double one = 1.0;
+    const int inc = 1;
+    F77_CALL(dgemv)(
+        notrans, &n, &p, &one,
+        X.begin(), &n, model->coef.data(), &inc, &one, pred.begin(), &inc
+        FCONE
+    );
+    return pred;
+}
+
+// [[Rcpp::export]]
+NumericVector fastLm(NumericMatrix X, NumericVector y) {
+    const vector<double> coef = fitCoefNoIntercept(X, y);
+    return NumericVector(coef.begin(), coef.end());
 }

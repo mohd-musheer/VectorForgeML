@@ -45,24 +45,38 @@ OneHotEncoder <- setRefClass(
     },
 
     transform=function(df){
-
-      out <- NULL
-
-      for(colname in names(df)){
-
-        col <- df[[colname]]
-        cats <- categories[[colname]]
-
-        mat <- sapply(cats, function(val)
-          as.integer(col == val)
-        )
-
-        colnames(mat) <- paste(colname,cats,sep="_")
-
-        out <- cbind(out, mat)
+      n <- nrow(df)
+      if (n == 0) {
+        return(matrix(numeric(0), nrow=0, ncol=0))
       }
 
-      as.matrix(out)
+      widths <- vapply(categories, length, integer(1))
+      total_cols <- sum(widths)
+      out <- matrix(0L, nrow=n, ncol=total_cols)
+      out_names <- character(total_cols)
+
+      col_start <- 1L
+      for(colname in names(df)){
+        col <- df[[colname]]
+        cats <- categories[[colname]]
+        k <- length(cats)
+        if (k == 0) {
+          next
+        }
+
+        idx <- match(col, cats)
+        valid <- !is.na(idx)
+        row_ids <- which(valid)
+        col_ids <- col_start + idx[valid] - 1L
+        out[cbind(row_ids, col_ids)] <- 1L
+
+        out_names[col_start:(col_start+k-1L)] <- paste(colname, cats, sep="_")
+        col_start <- col_start + k
+      }
+
+      colnames(out) <- out_names
+      storage.mode(out) <- "double"
+      out
     },
 
     fit_transform=function(df){

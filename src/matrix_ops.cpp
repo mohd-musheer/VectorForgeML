@@ -1,57 +1,106 @@
 #include "matrix_ops.h"
-#include <Rcpp.h>
+#include <cblas.h>
+#include <cmath>
 using namespace std;
-using namespace Rcpp;
 
-vector<vector<double>> transpose(const vector<vector<double>>& X){
-    int r=X.size(), c=X[0].size();
-    vector<vector<double>> T(c, vector<double>(r));
-    for(int i=0;i<r;i++)
-        for(int j=0;j<c;j++)
-            T[j][i]=X[i][j];
+
+// transpose
+FastMatrix transpose(const FastMatrix& A){
+    FastMatrix T(A.cols,A.rows);
+
+    #pragma omp parallel for
+    for(int i=0;i<A.rows;i++)
+        for(int j=0;j<A.cols;j++)
+            T(j,i)=A(i,j);
+
     return T;
 }
 
-vector<vector<double>> matmul(
-    const vector<vector<double>>& A,
-    const vector<vector<double>>& B){
 
-    int r=A.size(), c=B[0].size(), k=B.size();
-    vector<vector<double>> C(r, vector<double>(c,0));
+// BLAS matrix multiply
+FastMatrix matmul(const FastMatrix& A,const FastMatrix& B){
 
-    for(int i=0;i<r;i++)
-        for(int j=0;j<c;j++)
-            for(int t=0;t<k;t++)
-                C[i][j]+=A[i][t]*B[t][j];
+    FastMatrix C(A.rows,B.cols);
+
+    cblas_dgemm(
+        CblasRowMajor,
+        CblasNoTrans,
+        CblasNoTrans,
+        A.rows,
+        B.cols,
+        A.cols,
+        1.0,
+        A.ptr(),
+        A.cols,
+        B.ptr(),
+        B.cols,
+        0.0,
+        C.ptr(),
+        C.cols
+    );
 
     return C;
 }
 
-vector<vector<double>> inverse(vector<vector<double>> A){
 
-    int n=A.size();
-    vector<vector<double>> I(n, vector<double>(n,0));
+// matrix vector
+vector<double> matvec(const FastMatrix& A,const vector<double>& x){
 
-    for(int i=0;i<n;i++)
-        I[i][i]=1;
+    vector<double> y(A.rows,0);
 
+    cblas_dgemv(
+        CblasRowMajor,
+        CblasNoTrans,
+        A.rows,
+        A.cols,
+        1.0,
+        A.ptr(),
+        A.cols,
+        x.data(),
+        1,
+        0.0,
+        y.data(),
+        1
+    );
+
+    return y;
+}
+
+
+
+// Cholesky solver (fast + stable)
+vector<double> choleskySolve(FastMatrix A, vector<double> b){
+
+    int n=A.rows;
+
+    // decomposition
     for(int i=0;i<n;i++){
-        double d=A[i][i];
-        if(d==0) stop("Singular matrix");
+        for(int j=0;j<=i;j++){
+            double sum=A(i,j);
 
-        for(int j=0;j<n;j++){
-            A[i][j]/=d;
-            I[i][j]/=d;
-        }
+            for(int k=0;k<j;k++)
+                sum-=A(i,k)*A(j,k);
 
-        for(int k=0;k<n;k++){
-            if(k==i) continue;
-            double f=A[k][i];
-            for(int j=0;j<n;j++){
-                A[k][j]-=f*A[i][j];
-                I[k][j]-=f*I[i][j];
-            }
+            if(i==j)
+                A(i,j)=sqrt(sum);
+            else
+                A(i,j)=sum/A(j,j);
         }
     }
-    return I;
+
+    // forward
+    for(int i=0;i<n;i++){
+        for(int k=0;k<i;k++)
+            b[i]-=A(i,k)*b[k];
+        b[i]/=A(i,i);
+    }
+
+    // backward
+    for(int i=n-1;i>=0;i--){
+        for(int k=i+1;k<n;k++)
+            b[i]-=A(k,i)*b[k];
+        b[i]/=A(i,i);
+    }
+
+    return b;
 }
