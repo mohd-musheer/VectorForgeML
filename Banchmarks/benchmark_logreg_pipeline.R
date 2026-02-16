@@ -5,7 +5,6 @@ df <- read.csv("inst/dataset/heart_disease_b.csv")
 
 cat("Rows:", nrow(df), "\n")
 
-df$Cabin <- NULL
 
 y <- df$target
 X <- df

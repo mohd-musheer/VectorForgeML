@@ -95,7 +95,10 @@ df <- read.csv(system.file("dataset","cars.csv", package="VectorForgeML"))
 
 ### Kaggle Notebooks :-
 Linear Regression : https://www.kaggle.com/code/almusheer/linear-regression-vectorforgeml
+
 PipeLine : https://www.kaggle.com/code/almusheer/pipeline-vectorforgeml
+
+Logistic Regression : https://www.kaggle.com/code/almusheer/logistic-regression-vectorforgeml
 
 (Advanced build system using CMake will be added in future versions.)
 
