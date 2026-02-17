@@ -142,6 +142,54 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// softmax_create
+SEXP softmax_create();
+RcppExport SEXP _VectorForgeML_softmax_create() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(softmax_create());
+    return rcpp_result_gen;
+END_RCPP
+}
+// softmax_fit
+void softmax_fit(SEXP ptr, NumericMatrix X, IntegerVector y, double lr, int epochs);
+RcppExport SEXP _VectorForgeML_softmax_fit(SEXP ptrSEXP, SEXP XSEXP, SEXP ySEXP, SEXP lrSEXP, SEXP epochsSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type X(XSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type y(ySEXP);
+    Rcpp::traits::input_parameter< double >::type lr(lrSEXP);
+    Rcpp::traits::input_parameter< int >::type epochs(epochsSEXP);
+    softmax_fit(ptr, X, y, lr, epochs);
+    return R_NilValue;
+END_RCPP
+}
+// softmax_predict
+IntegerVector softmax_predict(SEXP ptr, NumericMatrix X);
+RcppExport SEXP _VectorForgeML_softmax_predict(SEXP ptrSEXP, SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(softmax_predict(ptr, X));
+    return rcpp_result_gen;
+END_RCPP
+}
+// softmax_predict_proba
+NumericMatrix softmax_predict_proba(SEXP ptr, NumericMatrix X);
+RcppExport SEXP _VectorForgeML_softmax_predict_proba(SEXP ptrSEXP, SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(softmax_predict_proba(ptr, X));
+    return rcpp_result_gen;
+END_RCPP
+}
 // square_vec
 NumericVector square_vec(NumericVector x);
 RcppExport SEXP _VectorForgeML_square_vec(SEXP xSEXP) {
@@ -210,6 +258,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_VectorForgeML_logreg_fit", (DL_FUNC) &_VectorForgeML_logreg_fit, 5},
     {"_VectorForgeML_logreg_predict", (DL_FUNC) &_VectorForgeML_logreg_predict, 2},
     {"_VectorForgeML_logreg_predict_proba", (DL_FUNC) &_VectorForgeML_logreg_predict_proba, 2},
+    {"_VectorForgeML_softmax_create", (DL_FUNC) &_VectorForgeML_softmax_create, 0},
+    {"_VectorForgeML_softmax_fit", (DL_FUNC) &_VectorForgeML_softmax_fit, 5},
+    {"_VectorForgeML_softmax_predict", (DL_FUNC) &_VectorForgeML_softmax_predict, 2},
+    {"_VectorForgeML_softmax_predict_proba", (DL_FUNC) &_VectorForgeML_softmax_predict_proba, 2},
     {"_VectorForgeML_square_vec", (DL_FUNC) &_VectorForgeML_square_vec, 1},
     {"_VectorForgeML_sum2", (DL_FUNC) &_VectorForgeML_sum2, 2},
     {"_VectorForgeML_cpp_sum_squares", (DL_FUNC) &_VectorForgeML_cpp_sum_squares, 1},

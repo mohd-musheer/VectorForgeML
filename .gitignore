@@ -7,3 +7,8 @@
 *.dll
 *.so
 *.exe
+.vscode
+dataR.txt
+getdata.py
+dataCPP.txt
+vscode

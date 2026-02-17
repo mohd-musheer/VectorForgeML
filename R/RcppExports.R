@@ -45,6 +45,22 @@ logreg_predict_proba <- function(ptr, X) {
     .Call(`_VectorForgeML_logreg_predict_proba`, ptr, X)
 }
 
+softmax_create <- function() {
+    .Call(`_VectorForgeML_softmax_create`)
+}
+
+softmax_fit <- function(ptr, X, y, lr = 0.1, epochs = 200L) {
+    invisible(.Call(`_VectorForgeML_softmax_fit`, ptr, X, y, lr, epochs))
+}
+
+softmax_predict <- function(ptr, X) {
+    .Call(`_VectorForgeML_softmax_predict`, ptr, X)
+}
+
+softmax_predict_proba <- function(ptr, X) {
+    .Call(`_VectorForgeML_softmax_predict_proba`, ptr, X)
+}
+
 square_vec <- function(x) {
     .Call(`_VectorForgeML_square_vec`, x)
 }

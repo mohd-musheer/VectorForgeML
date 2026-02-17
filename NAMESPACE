@@ -26,3 +26,8 @@ export(f1_score)
 export(macro_precision)
 export(macro_recall)
 export(macro_f1)
+export(SoftmaxRegression)
+
+export(confusion_matrix )
+export(confusion_stats)
+export(plot_confusion_matrix)

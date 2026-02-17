@@ -103,6 +103,16 @@ Pipeline <- setRefClass(
       trained <<- TRUE
       invisible(NULL)
     },
+    predict_proba=function(X){
+      data <- X
+      for(step in steps){
+        if(has_method(step,"transform")){
+          data <- step$transform(data)
+        } else if(has_method(step,"predict_proba")){
+          return(step$predict_proba(data))
+        }
+      }
+    },
 
     predict=function(X){
 
