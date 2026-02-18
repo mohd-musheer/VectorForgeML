@@ -257,12 +257,6 @@ F77_CALL(dsyev)("V", "U", &p, cov.data(), ...);
     // ==========================================
     // PREPROCESSING
     // ==========================================
-    // ==========================================
-    // PREPROCESSING
-    // ==========================================
-    // ==========================================
-    // PREPROCESSING
-    // ==========================================
     "StandardScaler": {
         title: "Standard Scaler",
         description: "Standardizes features by removing the mean and scaling to unit variance.",
@@ -295,54 +289,18 @@ F77_CALL(dsyev)("V", "U", &p, cov.data(), ...);
         time: "O(N * P).",
         space: "O(P)."
     },
-
-    // ==========================================
-    // METRICS
-    // ==========================================
-    "accuracy_score": {
-        title: "Accuracy Score",
-        description: "Accuracy classification score.",
-        impl: "Implemented in `metrics.R`.",
-        code: `accuracy_score <- function(y_true, y_pred){
-  y_true <- as.vector(y_true)
-  y_pred <- as.vector(y_pred)
-  mean(y_true == y_pred, na.rm = TRUE)
-}`,
-        lang: "r"
+    "drop_constant_columns": {
+        title: "Drop Constant Columns",
+        description: "Removes columns that have zero variance.",
+        impl: "Implemented in C++ (`LinearRegression.cpp`).",
+        code: `// Check variance
+if(var < eps) {
+    dropped_cols.push_back(j);
+} else {
+    keep_cols.push_back(j);
+    // Copy column
+}`
     },
-    "confusion_matrix": {
-        title: "Confusion Matrix",
-        description: "Computes the confusion matrix.",
-        impl: "Implemented in `metrics.R`.",
-        code: `confusion_matrix <- function(y_true, y_pred){
-  classes <- sort(unique(c(y_true,y_pred)))
-  k <- length(classes)
-  mat <- matrix(0L,k,k, dimnames=list(Actual=classes, Predicted=classes))
-  for(i in seq_along(y_true)){
-    a <- match(y_true[i],classes)
-    p <- match(y_pred[i],classes)
-    mat[a,p] <- mat[a,p] + 1L
-  }
-  mat
-}`,
-        lang: "r"
-    },
-    "f1_score": {
-        title: "F1 Score",
-        description: "The harmonic mean of precision and recall.",
-        impl: "Implemented in `metrics.R`.",
-        code: `f1_score <- function(y_true, y_pred, positive = NULL){
-  p <- precision_score(y_true, y_pred, positive)
-  r <- recall_score(y_true, y_pred, positive)
-  if(p+r == 0) return(0)
-  2*p*r/(p+r)
-}`,
-        lang: "r"
-    },
-
-    // ==========================================
-    // REMAINING PREPROCESSING
-    // ==========================================
     "LabelEncoder": {
         title: "Label Encoder",
         description: "Encodes target labels with value between 0 and n_classes-1.",
@@ -372,18 +330,6 @@ transform=function(x){
   out
 }`,
         lang: "r"
-    },
-    "drop_constant_columns": {
-        title: "Drop Constant Columns",
-        description: " Removes columns that have zero variance.",
-        impl: "Implemented in C++ (`LinearRegression.cpp`).",
-        code: `// Check variance
-if(var < eps) {
-    dropped_cols.push_back(j);
-} else {
-    keep_cols.push_back(j);
-    // Copy column
-}`
     },
     "ColumnTransformer": {
         title: "Column Transformer",
@@ -442,127 +388,132 @@ if(var < eps) {
     },
 
     // ==========================================
-    // REMAINING METRICS
+    // METRICS
     // ==========================================
+    "accuracy_score": {
+        title: "Accuracy Score",
+        description: "The Accuracy Score is a fundamental classification metric that computes the ratio of correctly predicted observations to the total observations. It is defined as $(TP+TN)/(TP+TN+FP+FN)$. While intuitive, it may be misleading for imbalanced datasets, where high accuracy can be achieved by simply predicting the majority class.",
+        math: "$$ \\text{Accuracy} = \\frac{1}{n} \\sum_{i=1}^{n} 1(y_i = \\hat{y}_i) $$",
+        cases: "Balanced Classification",
+        limitations: "Sensitive to class imbalance"
+    },
     "precision_score": {
         title: "Precision Score",
-        description: "The ratio tp / (tp + fp).",
-        impl: "Implemented in `metrics.R`.",
-        code: `precision_score <- function(y_true, y_pred, positive = NULL){
-  if(is.null(positive)) positive <- unique(y_true)[1]
-  tp <- sum(y_true == positive & y_pred == positive)
-  fp <- sum(y_true != positive & y_pred == positive)
-  if(tp + fp == 0) return(0)
-  tp/(tp+fp)
-}`,
-        lang: "r"
+        description: "Precision, or Positive Predictive Value, measures the proportion of positive identifications that were actually correct. It answers the question: 'Of all the classes we predicted as positive, how many were actually positive?' High precision relates to the low false positive rate.",
+        math: "$$ \\text{Precision} = \\frac{TP}{TP + FP} $$",
+        cases: "Fraud Detection (Minimize False Positives)",
+        limitations: "Does not account for False Negatives"
     },
     "recall_score": {
         title: "Recall Score",
-        description: "The ratio tp / (tp + fn).",
-        impl: "Implemented in `metrics.R`.",
-        code: `recall_score <- function(y_true, y_pred, positive = NULL){
-  if(is.null(positive)) positive <- unique(y_true)[1]
-  tp <- sum(y_true == positive & y_pred == positive)
-  fn <- sum(y_true == positive & y_pred != positive)
-  if(tp + fn == 0) return(0)
-  tp/(tp+fn)
-}`,
-        lang: "r"
+        description: "Recall, or Sensitivity (True Positive Rate), measures the proportion of actual positives that were identified correctly. It answers the question: 'Of all the people who truly have the disease, how many did we diagnose?' High recall relates to low false negative rate.",
+        math: "$$ \\text{Recall} = \\frac{TP}{TP + FN} $$",
+        cases: "Medical Diagnosis (Minimize False Negatives)",
+        limitations: "Does not account for False Positives"
     },
-    "mse": {
-        title: "Mean Squared Error",
-        description: "Mean squared error regression loss.",
-        impl: "Implemented in `metrics.R`.",
-        code: `mse <- function(y_true,y_pred){
-  mean((y_true-y_pred)^2, na.rm=TRUE)
-}`,
-        lang: "r"
-    },
-    "rmse": {
-        title: "Root Mean Squared Error",
-        description: "The square root of the mean squared error.",
-        impl: "Implemented in `metrics.R`.",
-        code: `rmse <- function(y_true,y_pred){
-  sqrt(mse(y_true,y_pred))
-}`,
-        lang: "r"
-    },
-    "r2_score": {
-        title: "R2 Score",
-        description: "$R^2$ (coefficient of determination).",
-        impl: "Implemented in `metrics.R`.",
-        code: `r2_score <- function(y_true,y_pred){
-  y_true <- y_true[!is.na(y_pred)]
-  y_pred <- y_pred[!is.na(y_pred)]
-  ss_res <- sum((y_true-y_pred)^2)
-  ss_tot <- sum((y_true-mean(y_true))^2)
-  if(is.na(ss_tot) || ss_tot==0) return(1)
-  1 - ss_res/ss_tot
-}`,
-        lang: "r"
+    "f1_score": {
+        title: "F1 Score",
+        description: "The F1 Score is the harmonic mean of Precision and Recall. It provides a single metric that balances both the concerns of false positives and false negatives. It is particularly useful when you need to take both Precision and Recall into account, especially if there is an uneven class distribution.",
+        math: "$$ F1 = 2 \\times \\frac{\\text{Precision} \\times \\text{Recall}}{\\text{Precision} + \\text{Recall}} $$",
+        cases: "Imbalanced Datasets",
+        limitations: "Assumes equal importance of Precision and Recall"
     },
     "macro_f1": {
         title: "Macro F1 Score",
-        description: "Calculate F1 score for each class and find their unweighted mean.",
-        impl: "Implemented in `metrics.R`.",
-        code: `macro_f1 <- function(y_true, y_pred){
-  classes <- unique(y_true)
-  mean(sapply(classes, function(cls)
-    f1_score(y_true, y_pred, cls)))
-}`,
-        lang: "r"
+        description: "Macro-averaged F1 Score computes the F1 score independently for each class and then takes the average (hence treating all classes equally). This metric is useful when you want to evaluate how the system performs across all classes, regardless of how frequent the class is in the dataset.",
+        math: "$$ \\text{Macro F1} = \\frac{1}{K} \\sum_{k=1}^{K} F1_k $$",
+        cases: "Multiclass with Class Importance Equality",
+        limitations: "Heavily penalized by poor performance on small classes"
+    },
+    "macro_precision": {
+        title: "Macro Precision",
+        description: "Macro-averaged Precision computes precision for each class individually and then computes the unweighted mean. This metric does not take label imbalance into account.",
+        math: "$$ \\text{Macro Prec} = \\frac{1}{K} \\sum_{k=1}^{K} \\text{Prec}_k $$",
+        cases: "Multiclass Classification",
+        limitations: "Insensitive to class frequency"
+    },
+    "macro_recall": {
+        title: "Macro Recall",
+        description: "Macro-averaged Recall computes recall for each class individually and then computes the unweighted mean.",
+        math: "$$ \\text{Macro Rec} = \\frac{1}{K} \\sum_{k=1}^{K} \\text{Rec}_k $$",
+        cases: "Multiclass Classification",
+        limitations: "Insensitive to class frequency"
+    },
+    "confusion_matrix": {
+        title: "Confusion Matrix",
+        description: "A tabular visualization of the performance of an algorithm. Each row of the matrix represents the instances in a predicted class, while each column represents the instances in an actual class (or vice versa). It makes it easy to see if the system is confusing two classes.",
+        math: "\\begin{bmatrix} TP & FP \\\\ FN & TN \\end{bmatrix}",
+        cases: "Model Debugging",
+        limitations: "Not a single scalar metric"
     },
     "confusion_stats": {
         title: "Confusion Stats",
-        description: "summary of metrics from Conf Matrix.",
-        impl: "Implemented in `metrics.R`.",
-        code: `confusion_stats <- function(cm){
-  total <- sum(cm)
-  acc <- sum(diag(cm))/total
-  precision <- diag(cm)/colSums(cm)
-  recall <- diag(cm)/rowSums(cm)
-  f1 <- 2*precision*recall/(precision+recall)
-  list(accuracy = acc, precision = precision, recall = recall, f1 = f1)
-}`,
-        lang: "r"
+        description: "A wrapper utility that computes a comprehensive report of accuracy, precision, recall, and F1 score directly from a pre-computed confusion matrix.",
+        math: "\\text{Report} = \\{ \\text{Acc}, \\text{Prec}, \\text{Rec}, \\text{F1} \\}",
+        cases: "Quick Summary",
+        limitations: "Dependent on Confusion Matrix"
+    },
+    "mse": {
+        title: "Mean Squared Error",
+        description: "MSE measures the average of the squares of the errors—that is, the average squared difference between the estimated values and the actual value. It penalizes larger errors more severely than smaller ones.",
+        math: "$$ \\text{MSE} = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2 $$",
+        cases: "Regression Loss Function",
+        limitations: "Sensitive to Outliers"
+    },
+    "rmse": {
+        title: "Root Mean Squared Error",
+        description: "RMSE is the square root of the average of squared differences between prediction and actual observation. It represents the sample standard deviation of the differences between predicted values and observed values.",
+        math: "$$ \\text{RMSE} = \\sqrt{\\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2} $$",
+        cases: "Regression Error Reporting",
+        limitations: "Sensitive to Outliers"
+    },
+    "r2_score": {
+        title: "R2 Score",
+        description: "The coefficient of determination, denoted R2, is the proportion of the variance in the dependent variable that is predictable from the independent variable(s).",
+        math: "$$ R^2 = 1 - \\frac{\\sum (y_i - \\hat{y}_i)^2}{\\sum (y_i - \\bar{y})^2} $$",
+        cases: "Regression Goodness-of-Fit",
+        limitations: "Can be negative for arbitrarily worse models"
     },
 
     // ==========================================
-    // CORE UTILITIES
+    // CORE ENGINE / UTILITIES
     // ==========================================
-    "matrix_ops": {
-        title: "Matrix Operations",
-        description: "High-performance matrix utilities.",
-        impl: "Implemented in `matrix_ops.cpp`.",
-        code: `// Parallel Matrix Multiplication
-#pragma omp parallel for
-for(int i=0; i<n; i++){
-    for(int j=0; j<p; j++){
-        // dot product row i, col j
-    }
-}`,
-        opt: "OpenMP."
-    },
     "dot_product": {
         title: "Dot Product",
-        description: "Computes the dot product of two vectors using BLAS Level 1 operations.",
-        math: "$\\mathbf{a} \\cdot \\mathbf{b} = \\sum a_i b_i$",
+        description: "Computes the dot product of two vectors using BLAS Level 1 operations. Optimized for speed using assembly-level instructions where available via the BLAS backend.",
+        math: "$$ \\mathbf{a} \\cdot \\mathbf{b} = \\sum a_i b_i $$",
         impl: "Implemented in `functions.cpp`.",
         code: `F77_CALL(ddot)(&n, a.begin(), &inc, b.begin(), &inc)`
     },
     "square_vec": {
         title: "Square Vector",
-        description: "Computes the element-wise square of a vector.",
-        math: "$y_i = x_i^2$",
+        description: "Computes the element-wise square of a vector. This is a common operation in variance calculations.",
+        math: "$$ y_i = x_i^2 $$",
         impl: "Implemented in `functions.cpp`.",
         code: `x * x  // Rcpp vectorized`
     },
     "cpp_sum_squares": {
         title: "Sum of Squares (Analytical)",
-        description: "Computes the sum of squared integers.",
-        math: "$\\sum_{i=1}^n i^2 = \\frac{n(n+1)(2n+1)}{6}$",
+        description: "Computes the sum of squared integers up to N using the analytical formula. This avoids O(N) iteration.",
+        math: "$$ \\sum_{i=1}^n i^2 = \\frac{n(n+1)(2n+1)}{6} $$",
         impl: "Implemented in `functions.cpp`.",
         code: `return dn * (dn + 1.0) * (2.0 * dn + 1.0) / 6.0;`
+    },
+    "matrix_ops": {
+        title: "Matrix Operations",
+        description: "High-performance matrix utilities including multiplication, transposition, and solving linear systems. Utilizes OpenMP for parallel execution on multi-core CPU architectures.",
+        impl: "Implemented in `matrix_ops.cpp`.",
+        code: `// Parallel Matrix Multiplication
+#pragma omp parallel for
+for(int i=0; i<n; i++){
+// ...
+}`,
+        opt: "OpenMP."
+    },
+    "cpp_set_blas_threads": {
+        title: "Set BLAS Threads",
+        description: "Dynamically configures the number of threads used by the underlying BLAS library (e.g., OpenBLAS, MKL) for linear algebra operations.",
+        impl: "Sets environment variables or calls library specific API.",
+        cases: "Performance Tuning"
     }
 };

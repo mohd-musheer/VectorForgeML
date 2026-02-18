@@ -3,12 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Set BLAS Threads - VectorForgeML Docs</title>
+    <title>Set BLAS Threads - VectorForgeML Documentation</title>
+    <meta name="description" content="Dynamically configures the number of threads used by the underlying BLAS library (e.g., OpenBLAS, MKL) for linear algebra operations....">
+    <meta name="keywords" content="Set BLAS Threads, cpp_set_blas_threads, R Machine Learning, C++ Implementation, VectorForgeML, Data Science, Algorithm">
+    <link rel="canonical" href="https://vectorforgeml.com/docs/cpp_set_blas_threads.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Set BLAS Threads - High Performance Implementation">
+    <meta property="og:description" content="Dynamically configures the number of threads used by the underlying BLAS library (e.g., OpenBLAS, MKL) for linear algebra operations....">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vectorforgeml.com/docs/cpp_set_blas_threads.html">
+    <meta property="og:image" content="https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png">
+
+    <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <!-- MathJax for rendering formulas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Set BLAS Threads Implementation in VectorForgeML",
+      "description": "Dynamically configures the number of threads used by the underlying BLAS library (e.g., OpenBLAS, MKL) for linear algebra operations.",
+      "proficiencyLevel": "Expert",
+      "programmingLanguage": ["R", "C++"],
+      "author": {
+        "@type": "Person",
+        "name": "Mohd Musheer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VectorForgeML",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png"
+        }
+      }
+    }
+    </script>
 </head>
 <body class="docs-layout">
     <div id="navbar"></div>
@@ -24,52 +61,27 @@
             <section class="glass-panel slide-up" style="padding: 2rem; margin-bottom: 2rem;">
                 <h3>Description</h3>
                 <p style="color: var(--text-secondary); line-height: 1.6;">
-                    Sets the number of threads for BLAS operations (dependent on OpenBLAS/MKL availability).
+                    Dynamically configures the number of threads used by the underlying BLAS library (e.g., OpenBLAS, MKL) for linear algebra operations.
                 </p>
                 
             </section>
 
-            <section class="slide-up" style="animation-delay: 0.1s; margin-top: 3rem;">
-                <h3>Algorithm Steps</h3>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <ol style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
-                        <li>Refer to source code.</li>
-                    </ol>
-                </div>
-            </section>
+            
 
+            
             <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
                 <h3>Implementation Details</h3>
                 <div class="glass-panel" style="padding: 2rem;">
-                    <p style="color: var(--text-secondary);">Implemented in `functions.cpp`. Calls `openblas_set_num_threads` if available.</p>
+                    <p style="color: var(--text-secondary);">Sets environment variables or calls library specific API.</p>
                 </div>
+                
             </section>
 
-            <section class="slide-up" style="animation-delay: 0.3s; margin-top: 3rem;">
-                <h3>Complexity & Optimization</h3>
-                <div class="grid-2">
-                    <div class="glass-panel" style="padding: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--accent-secondary);">Time Complexity</h4>
-                        <p style="color: var(--text-secondary); margin: 0;">N/A</p>
-                    </div>
-                    <div class="glass-panel" style="padding: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--accent-primary);">Space Complexity</h4>
-                        <p style="color: var(--text-secondary); margin: 0;">N/A</p>
-                    </div>
-                    <div class="glass-panel" style="padding: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">Optimizations</h4>
-                        <p style="color: var(--text-secondary); margin: 0;">None</p>
-                    </div>
-                    <div class="glass-panel" style="padding: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: #ef4444;">Limitations</h4>
-                        <p style="color: var(--text-secondary); margin: 0;">None listed.</p>
-                    </div>
-                </div>
-            </section>
+            
 
              <section class="slide-up" style="animation-delay: 0.4s; margin-top: 3rem;">
                 <h3>Use Cases</h3>
-                 <p style="color: var(--text-secondary);">General purpose.</p>
+                 <p style="color: var(--text-secondary);">Performance Tuning</p>
             </section>
 
         </main>

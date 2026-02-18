@@ -140,11 +140,15 @@ body::before {
     top: 0;
     width: 100%;
     z-index: 1000;
-    height: var(--nav-height);
-    background: rgba(13, 13, 18, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--glass-border);
+    height: 80px;
+    /* Increased height */
+    background: rgba(13, 13, 18, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    /* Enhanced glass effect */
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s ease;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -157,36 +161,74 @@ body::before {
     padding: 0 2rem;
 }
 
+.logo-area {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo-area:hover {
+    transform: scale(1.02);
+}
+
 .logo-area img {
-    height: 32px;
+    height: 48px;
+    /* Larger logo */
+    width: auto;
     vertical-align: middle;
+    filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.3));
 }
 
 .logo-area span {
-    font-weight: 700;
-    font-size: 1.2rem;
-    margin-left: 0.5rem;
-    background: linear-gradient(90deg, #fff, #a1a1aa);
+    font-weight: 800;
+    font-size: 1.6rem;
+    margin-left: 0.8rem;
+    background: linear-gradient(135deg, #fff 0%, #a855f7 50%, #6366f1 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+    font-family: 'Inter', sans-serif;
 }
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
+    align-items: center;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
-    color: var(--text-secondary);
+    color: #e2e8f0;
     text-decoration: none;
     font-weight: 500;
-    transition: color var(--transition-speed);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-links a:not(.btn-primary)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    transition: width 0.3s ease;
+}
+
+.nav-links a:not(.btn-primary):hover::after {
+    width: 100%;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: var(--text-primary);
+    color: white;
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
 }
 
 /* Sidebar */

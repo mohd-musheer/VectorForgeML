@@ -3,13 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Root Mean Squared Error - VectorForgeML Docs</title>
+    <title>Root Mean Squared Error - VectorForgeML Documentation</title>
+    <meta name="description" content="RMSE is the square root of the average of squared differences between prediction and actual observation. It represents the sample standard deviation of the diff...">
+    <meta name="keywords" content="Root Mean Squared Error, rmse, R Machine Learning, C++ Implementation, VectorForgeML, Data Science, Algorithm">
+    <link rel="canonical" href="https://vectorforgeml.com/docs/rmse.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Root Mean Squared Error - High Performance Implementation">
+    <meta property="og:description" content="RMSE is the square root of the average of squared differences between prediction and actual observation. It represents the sample standard deviation of the differences between predicted values and obs...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vectorforgeml.com/docs/rmse.html">
+    <meta property="og:image" content="https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png">
+
     <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <!-- MathJax for rendering formulas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Root Mean Squared Error Implementation in VectorForgeML",
+      "description": "RMSE is the square root of the average of squared differences between prediction and actual observation. It represents the sample standard deviation of the differences between predicted values and observed values.",
+      "proficiencyLevel": "Expert",
+      "programmingLanguage": ["R", "C++"],
+      "author": {
+        "@type": "Person",
+        "name": "Mohd Musheer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VectorForgeML",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png"
+        }
+      }
+    }
+    </script>
 </head>
 <body class="docs-layout">
     <div id="navbar"></div>
@@ -25,31 +61,20 @@
             <section class="glass-panel slide-up" style="padding: 2rem; margin-bottom: 2rem;">
                 <h3>Description</h3>
                 <p style="color: var(--text-secondary); line-height: 1.6;">
-                    The square root of the mean squared error.
+                    RMSE is the square root of the average of squared differences between prediction and actual observation. It represents the sample standard deviation of the differences between predicted values and observed values.
                 </p>
-                
+                <div class="glass-panel" style="padding:1rem; margin:1rem 0; font-family:'Times New Roman', serif; font-size:1.1rem; text-align:center;">$$ \text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2} $$</div>
             </section>
 
             
 
-            <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
-                <h3>Implementation Details</h3>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <p style="color: var(--text-secondary);">Implemented in `metrics.R`.</p>
-                </div>
-                
-                <div class="glass-panel" style="margin-top: 1.5rem; padding: 0; overflow: hidden;">
-                    <pre><code class="language-r" style="font-size: 0.85rem;">rmse &lt;- function(y_true,y_pred){
-  sqrt(mse(y_true,y_pred))
-}</code></pre>
-                </div>
-            </section>
+            
 
             
 
              <section class="slide-up" style="animation-delay: 0.4s; margin-top: 3rem;">
                 <h3>Use Cases</h3>
-                 <p style="color: var(--text-secondary);">General purpose.</p>
+                 <p style="color: var(--text-secondary);">Regression Error Reporting</p>
             </section>
 
         </main>

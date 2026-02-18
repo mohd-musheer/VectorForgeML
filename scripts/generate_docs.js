@@ -44,12 +44,22 @@ const template = (algoName, data) => {
 
     const math = data && data.math ? `<div class="glass-panel" style="padding:1rem; margin:1rem 0; font-family:'Times New Roman', serif; font-size:1.1rem; text-align:center;">${data.math}</div>` : '';
 
-    const implText = data ? data.impl : 'Implemented in R/C++.';
+    const showImpl = data && (data.impl || data.code);
+    const implText = data && data.impl ? data.impl : 'Implemented in R/C++.';
     const lang = data && data.lang ? data.lang : 'cpp';
     const implCode = data && data.code ? `
                 <div class="glass-panel" style="margin-top: 1.5rem; padding: 0; overflow: hidden;">
                     <pre><code class="language-${lang}" style="font-size: 0.85rem;">${data.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
                 </div>` : '';
+
+    const implSection = showImpl ? `
+            <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
+                <h3>Implementation Details</h3>
+                <div class="glass-panel" style="padding: 2rem;">
+                    <p style="color: var(--text-secondary);">${implText}</p>
+                </div>
+                ${implCode}
+            </section>` : '';
 
     const complexitySection = showComplexity ? `
             <section class="slide-up" style="animation-delay: 0.3s; margin-top: 3rem;">
@@ -85,13 +95,49 @@ const template = (algoName, data) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title} - VectorForgeML Docs</title>
+    <title>${title} - VectorForgeML Documentation</title>
+    <meta name="description" content="${desc.substring(0, 160).replace(/"/g, '&quot;')}...">
+    <meta name="keywords" content="${title}, ${algoName}, R Machine Learning, C++ Implementation, VectorForgeML, Data Science, Algorithm">
+    <link rel="canonical" href="https://vectorforgeml.com/docs/${algoName}.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="${title} - High Performance Implementation">
+    <meta property="og:description" content="${desc.substring(0, 200).replace(/"/g, '&quot;')}...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vectorforgeml.com/docs/${algoName}.html">
+    <meta property="og:image" content="https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png">
+
     <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <!-- MathJax for rendering formulas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "${title} Implementation in VectorForgeML",
+      "description": "${desc.replace(/"/g, '&quot;')}",
+      "proficiencyLevel": "Expert",
+      "programmingLanguage": ["R", "C++"],
+      "author": {
+        "@type": "Person",
+        "name": "Mohd Musheer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VectorForgeML",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png"
+        }
+      }
+    }
+    </script>
 </head>
 <body class="docs-layout">
     <div id="navbar"></div>
@@ -114,13 +160,7 @@ const template = (algoName, data) => {
 
             ${stepsSection}
 
-            <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
-                <h3>Implementation Details</h3>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <p style="color: var(--text-secondary);">${implText}</p>
-                </div>
-                ${implCode}
-            </section>
+            ${implSection}
 
             ${complexitySection}
 

@@ -3,13 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confusion Stats - VectorForgeML Docs</title>
+    <title>Confusion Stats - VectorForgeML Documentation</title>
+    <meta name="description" content="A wrapper utility that computes a comprehensive report of accuracy, precision, recall, and F1 score directly from a pre-computed confusion matrix....">
+    <meta name="keywords" content="Confusion Stats, confusion_stats, R Machine Learning, C++ Implementation, VectorForgeML, Data Science, Algorithm">
+    <link rel="canonical" href="https://vectorforgeml.com/docs/confusion_stats.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Confusion Stats - High Performance Implementation">
+    <meta property="og:description" content="A wrapper utility that computes a comprehensive report of accuracy, precision, recall, and F1 score directly from a pre-computed confusion matrix....">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vectorforgeml.com/docs/confusion_stats.html">
+    <meta property="og:image" content="https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png">
+
     <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <!-- MathJax for rendering formulas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Confusion Stats Implementation in VectorForgeML",
+      "description": "A wrapper utility that computes a comprehensive report of accuracy, precision, recall, and F1 score directly from a pre-computed confusion matrix.",
+      "proficiencyLevel": "Expert",
+      "programmingLanguage": ["R", "C++"],
+      "author": {
+        "@type": "Person",
+        "name": "Mohd Musheer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VectorForgeML",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png"
+        }
+      }
+    }
+    </script>
 </head>
 <body class="docs-layout">
     <div id="navbar"></div>
@@ -25,36 +61,20 @@
             <section class="glass-panel slide-up" style="padding: 2rem; margin-bottom: 2rem;">
                 <h3>Description</h3>
                 <p style="color: var(--text-secondary); line-height: 1.6;">
-                    summary of metrics from Conf Matrix.
+                    A wrapper utility that computes a comprehensive report of accuracy, precision, recall, and F1 score directly from a pre-computed confusion matrix.
                 </p>
-                
+                <div class="glass-panel" style="padding:1rem; margin:1rem 0; font-family:'Times New Roman', serif; font-size:1.1rem; text-align:center;">\text{Report} = \{ \text{Acc}, \text{Prec}, \text{Rec}, \text{F1} \}</div>
             </section>
 
             
 
-            <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
-                <h3>Implementation Details</h3>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <p style="color: var(--text-secondary);">Implemented in `metrics.R`.</p>
-                </div>
-                
-                <div class="glass-panel" style="margin-top: 1.5rem; padding: 0; overflow: hidden;">
-                    <pre><code class="language-r" style="font-size: 0.85rem;">confusion_stats &lt;- function(cm){
-  total &lt;- sum(cm)
-  acc &lt;- sum(diag(cm))/total
-  precision &lt;- diag(cm)/colSums(cm)
-  recall &lt;- diag(cm)/rowSums(cm)
-  f1 &lt;- 2*precision*recall/(precision+recall)
-  list(accuracy = acc, precision = precision, recall = recall, f1 = f1)
-}</code></pre>
-                </div>
-            </section>
+            
 
             
 
              <section class="slide-up" style="animation-delay: 0.4s; margin-top: 3rem;">
                 <h3>Use Cases</h3>
-                 <p style="color: var(--text-secondary);">General purpose.</p>
+                 <p style="color: var(--text-secondary);">Quick Summary</p>
             </section>
 
         </main>

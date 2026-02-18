@@ -3,13 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confusion Matrix - VectorForgeML Docs</title>
+    <title>Confusion Matrix - VectorForgeML Documentation</title>
+    <meta name="description" content="A tabular visualization of the performance of an algorithm. Each row of the matrix represents the instances in a predicted class, while each column represents t...">
+    <meta name="keywords" content="Confusion Matrix, confusion_matrix, R Machine Learning, C++ Implementation, VectorForgeML, Data Science, Algorithm">
+    <link rel="canonical" href="https://vectorforgeml.com/docs/confusion_matrix.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Confusion Matrix - High Performance Implementation">
+    <meta property="og:description" content="A tabular visualization of the performance of an algorithm. Each row of the matrix represents the instances in a predicted class, while each column represents the instances in an actual class (or vice...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vectorforgeml.com/docs/confusion_matrix.html">
+    <meta property="og:image" content="https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png">
+
     <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <!-- MathJax for rendering formulas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Confusion Matrix Implementation in VectorForgeML",
+      "description": "A tabular visualization of the performance of an algorithm. Each row of the matrix represents the instances in a predicted class, while each column represents the instances in an actual class (or vice versa). It makes it easy to see if the system is confusing two classes.",
+      "proficiencyLevel": "Expert",
+      "programmingLanguage": ["R", "C++"],
+      "author": {
+        "@type": "Person",
+        "name": "Mohd Musheer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VectorForgeML",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png"
+        }
+      }
+    }
+    </script>
 </head>
 <body class="docs-layout">
     <div id="navbar"></div>
@@ -25,39 +61,20 @@
             <section class="glass-panel slide-up" style="padding: 2rem; margin-bottom: 2rem;">
                 <h3>Description</h3>
                 <p style="color: var(--text-secondary); line-height: 1.6;">
-                    Computes the confusion matrix.
+                    A tabular visualization of the performance of an algorithm. Each row of the matrix represents the instances in a predicted class, while each column represents the instances in an actual class (or vice versa). It makes it easy to see if the system is confusing two classes.
                 </p>
-                
+                <div class="glass-panel" style="padding:1rem; margin:1rem 0; font-family:'Times New Roman', serif; font-size:1.1rem; text-align:center;">\begin{bmatrix} TP & FP \\ FN & TN \end{bmatrix}</div>
             </section>
 
             
 
-            <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
-                <h3>Implementation Details</h3>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <p style="color: var(--text-secondary);">Implemented in `metrics.R`.</p>
-                </div>
-                
-                <div class="glass-panel" style="margin-top: 1.5rem; padding: 0; overflow: hidden;">
-                    <pre><code class="language-r" style="font-size: 0.85rem;">confusion_matrix &lt;- function(y_true, y_pred){
-  classes &lt;- sort(unique(c(y_true,y_pred)))
-  k &lt;- length(classes)
-  mat &lt;- matrix(0L,k,k, dimnames=list(Actual=classes, Predicted=classes))
-  for(i in seq_along(y_true)){
-    a &lt;- match(y_true[i],classes)
-    p &lt;- match(y_pred[i],classes)
-    mat[a,p] &lt;- mat[a,p] + 1L
-  }
-  mat
-}</code></pre>
-                </div>
-            </section>
+            
 
             
 
              <section class="slide-up" style="animation-delay: 0.4s; margin-top: 3rem;">
                 <h3>Use Cases</h3>
-                 <p style="color: var(--text-secondary);">General purpose.</p>
+                 <p style="color: var(--text-secondary);">Model Debugging</p>
             </section>
 
         </main>

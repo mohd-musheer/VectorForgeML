@@ -3,13 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decision Tree Regressor - VectorForgeML Docs</title>
+    <title>Decision Tree Regressor - VectorForgeML Documentation</title>
+    <meta name="description" content="A high-performance, recursive partitioning algorithm that constructs a regression tree by exhaustively searching for optimal splits. Unlike standard implementat...">
+    <meta name="keywords" content="Decision Tree Regressor, DecisionTree, R Machine Learning, C++ Implementation, VectorForgeML, Data Science, Algorithm">
+    <link rel="canonical" href="https://vectorforgeml.com/docs/DecisionTree.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Decision Tree Regressor - High Performance Implementation">
+    <meta property="og:description" content="A high-performance, recursive partitioning algorithm that constructs a regression tree by exhaustively searching for optimal splits. Unlike standard implementations, vectorForgeML's Decision Tree is b...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vectorforgeml.com/docs/DecisionTree.html">
+    <meta property="og:image" content="https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png">
+
     <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <!-- MathJax for rendering formulas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Decision Tree Regressor Implementation in VectorForgeML",
+      "description": "A high-performance, recursive partitioning algorithm that constructs a regression tree by exhaustively searching for optimal splits. Unlike standard implementations, vectorForgeML's Decision Tree is built directly in C++ using raw pointers for graph construction, ensuring minimal memory overhead and cache-friendly traversal. It supports deep trees and handles continuous features with high precision. The model predicts the target value by traversing the tree from root to leaf, where each node represents a decision rule based on a single feature threshold.",
+      "proficiencyLevel": "Expert",
+      "programmingLanguage": ["R", "C++"],
+      "author": {
+        "@type": "Person",
+        "name": "Mohd Musheer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VectorForgeML",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png"
+        }
+      }
+    }
+    </script>
 </head>
 <body class="docs-layout">
     <div id="navbar"></div>
@@ -65,6 +101,7 @@
                 </div>
             </section>
 
+            
             <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
                 <h3>Implementation Details</h3>
                 <div class="glass-panel" style="padding: 2rem;">

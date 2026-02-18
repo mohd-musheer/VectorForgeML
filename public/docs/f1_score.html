@@ -3,13 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 Score - VectorForgeML Docs</title>
+    <title>F1 Score - VectorForgeML Documentation</title>
+    <meta name="description" content="The F1 Score is the harmonic mean of Precision and Recall. It provides a single metric that balances both the concerns of false positives and false negatives. I...">
+    <meta name="keywords" content="F1 Score, f1_score, R Machine Learning, C++ Implementation, VectorForgeML, Data Science, Algorithm">
+    <link rel="canonical" href="https://vectorforgeml.com/docs/f1_score.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="F1 Score - High Performance Implementation">
+    <meta property="og:description" content="The F1 Score is the harmonic mean of Precision and Recall. It provides a single metric that balances both the concerns of false positives and false negatives. It is particularly useful when you need t...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vectorforgeml.com/docs/f1_score.html">
+    <meta property="og:image" content="https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png">
+
     <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <!-- MathJax for rendering formulas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "F1 Score Implementation in VectorForgeML",
+      "description": "The F1 Score is the harmonic mean of Precision and Recall. It provides a single metric that balances both the concerns of false positives and false negatives. It is particularly useful when you need to take both Precision and Recall into account, especially if there is an uneven class distribution.",
+      "proficiencyLevel": "Expert",
+      "programmingLanguage": ["R", "C++"],
+      "author": {
+        "@type": "Person",
+        "name": "Mohd Musheer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VectorForgeML",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png"
+        }
+      }
+    }
+    </script>
 </head>
 <body class="docs-layout">
     <div id="navbar"></div>
@@ -25,34 +61,20 @@
             <section class="glass-panel slide-up" style="padding: 2rem; margin-bottom: 2rem;">
                 <h3>Description</h3>
                 <p style="color: var(--text-secondary); line-height: 1.6;">
-                    The harmonic mean of precision and recall.
+                    The F1 Score is the harmonic mean of Precision and Recall. It provides a single metric that balances both the concerns of false positives and false negatives. It is particularly useful when you need to take both Precision and Recall into account, especially if there is an uneven class distribution.
                 </p>
-                
+                <div class="glass-panel" style="padding:1rem; margin:1rem 0; font-family:'Times New Roman', serif; font-size:1.1rem; text-align:center;">$$ F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} $$</div>
             </section>
 
             
 
-            <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
-                <h3>Implementation Details</h3>
-                <div class="glass-panel" style="padding: 2rem;">
-                    <p style="color: var(--text-secondary);">Implemented in `metrics.R`.</p>
-                </div>
-                
-                <div class="glass-panel" style="margin-top: 1.5rem; padding: 0; overflow: hidden;">
-                    <pre><code class="language-r" style="font-size: 0.85rem;">f1_score &lt;- function(y_true, y_pred, positive = NULL){
-  p &lt;- precision_score(y_true, y_pred, positive)
-  r &lt;- recall_score(y_true, y_pred, positive)
-  if(p+r == 0) return(0)
-  2*p*r/(p+r)
-}</code></pre>
-                </div>
-            </section>
+            
 
             
 
              <section class="slide-up" style="animation-delay: 0.4s; margin-top: 3rem;">
                 <h3>Use Cases</h3>
-                 <p style="color: var(--text-secondary);">General purpose.</p>
+                 <p style="color: var(--text-secondary);">Imbalanced Datasets</p>
             </section>
 
         </main>
