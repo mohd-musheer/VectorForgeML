@@ -1,10 +1,11 @@
 Package: VectorForgeML
 Type: Package
-Title: High Performance ML Backend
+Title: High-Performance Machine Learning Framework with C++
+        Acceleration
 Version: 0.1.0
 Author: Musheer
 Maintainer: Musheer <musheerayan@gmail.com>
-Description: Fast ML primitives written in C++.
+Description: VectorForgeML provides high-performance machine learning algorithms implemented in C++ with an R interface. The package includes regression, classification, clustering, preprocessing utilities, evaluation metrics, and pipeline tools designed for efficient model training and prediction.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 3.5.0)
@@ -12,7 +13,9 @@ Imports: methods, Rcpp
 LinkingTo: Rcpp
 SystemRequirements: OpenMP (optional)
 RoxygenNote: 7.3.3
+URL: https://vectorforgeml.work.gd
+BugReports: https://github.com/mohd-musheer/VectorForgeML/issues
 NeedsCompilation: yes
-Packaged: 2026-02-18 09:36:33 UTC; mushe
-Built: R 4.5.2; x86_64-w64-mingw32; 2026-02-18 09:36:40 UTC; windows
+Packaged: 2026-02-18 18:06:52 UTC; mushe
+Built: R 4.5.2; x86_64-w64-mingw32; 2026-02-18 18:08:04 UTC; windows
 Archs: x64

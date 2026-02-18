@@ -10,3 +10,10 @@
 ^dataset$
 ^\.\.?Rcheck$
 ^src/.*\.(o|obj|dll|so|dylib|a|lib)$
+^public$
+^docs$
+^\.github$
+^\.git$
+^README\.md$
+^CNAME$
+^scripts$
