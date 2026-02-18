@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standard Scaler - VectorForgeML Docs</title>
+    <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <!-- MathJax for rendering formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="docs-layout">
+    <div id="navbar"></div>
+    <div id="sidebar"></div>
+
+    <div class="layout-container">
+        <main class="main-content">
+            <div style="margin-bottom: 2rem;">
+                <span style="font-size: 0.9rem; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 1px;">Algorithm</span>
+                <h1 class="fade-in" style="margin-top: 0.5rem;">Standard Scaler</h1>
+            </div>
+
+            <section class="glass-panel slide-up" style="padding: 2rem; margin-bottom: 2rem;">
+                <h3>Description</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">
+                    Standardizes features by removing the mean and scaling to unit variance.
+                </p>
+                
+            </section>
+
+            
+
+            <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
+                <h3>Implementation Details</h3>
+                <div class="glass-panel" style="padding: 2rem;">
+                    <p style="color: var(--text-secondary);">Implemented in `scalers.R`. Uses `cpp_scale_fit_transform` for speed if available, otherwise R `scale`.</p>
+                </div>
+                
+                <div class="glass-panel" style="margin-top: 1.5rem; padding: 0; overflow: hidden;">
+                    <pre><code class="language-r" style="font-size: 0.85rem;">fit=function(X){
+  X &lt;- as.matrix(X)
+  if (exists("cpp_scale_fit_transform", mode="function")) {
+    out &lt;- cpp_scale_fit_transform(X)
+    mean &lt;&lt;- out$mean
+    sd &lt;&lt;- out$sd
+  } else {
+    mean &lt;&lt;- colMeans(X)
+    sd &lt;&lt;- apply(X,2,sd)
+    sd[sd==0] &lt;&lt;- 1
+  }
+}</code></pre>
+                </div>
+            </section>
+
+            
+            <section class="slide-up" style="animation-delay: 0.3s; margin-top: 3rem;">
+                <h3>Complexity & Optimization</h3>
+                <div class="grid-2">
+                    <div class="glass-panel" style="padding: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--accent-secondary);">Time Complexity</h4>
+                        <p style="color: var(--text-secondary); margin: 0;">O(N * P).</p>
+                    </div>
+                    <div class="glass-panel" style="padding: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--accent-primary);">Space Complexity</h4>
+                        <p style="color: var(--text-secondary); margin: 0;">O(P).</p>
+                    </div>
+                    <div class="glass-panel" style="padding: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">Optimizations</h4>
+                        <p style="color: var(--text-secondary); margin: 0;">None</p>
+                    </div>
+                    <div class="glass-panel" style="padding: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: #ef4444;">Limitations</h4>
+                        <p style="color: var(--text-secondary); margin: 0;">None listed</p>
+                    </div>
+                </div>
+            </section>
+
+             <section class="slide-up" style="animation-delay: 0.4s; margin-top: 3rem;">
+                <h3>Use Cases</h3>
+                 <p style="color: var(--text-secondary);">General purpose.</p>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="footer"></div>
+    <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>

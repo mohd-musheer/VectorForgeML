@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VectorForgeML: High-performance R + C++ Machine Learning Framework">
+    <title>VectorForgeML - fast, modular, production-ready</title>
+    <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="navbar"></div>
+
+    <div class="layout-container">
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section style="text-align: center; padding: 6rem 0;">
+                <h1 class="fade-in">Supercharge your R workflows with <br><span
+                        class="text-gradient">VectorForgeML</span></h1>
+                <p class="fade-in"
+                    style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 1.5rem auto; animation-delay: 0.1s;">
+                    The high-performance Machine Learning framework bridging the gap between R's simplicity and C++'s
+                    speed.
+                </p>
+                <div class="fade-in" style="margin-top: 2.5rem; animation-delay: 0.2s;">
+                    <a href="/docs/index.html" class="btn-primary">Documentation</a>
+                    <a href="/install/index.html" class="btn-outline" style="margin-left: 1rem;">Installation</a>
+                </div>
+            </section>
+
+            <!-- Stats/Features Grid -->
+            <section class="grid-3 slide-up" style="margin-top: 4rem; animation-delay: 0.3s;">
+                <div class="glass-panel" style="padding: 2rem;">
+                    <h3 style="color: var(--accent-primary);">Blazing Fast</h3>
+                    <p style="color: var(--text-secondary);">Optimized C++ backend ensures your models train in record
+                        time.</p>
+                </div>
+                <div class="glass-panel" style="padding: 2rem;">
+                    <h3 style="color: var(--accent-secondary);">Modular Design</h3>
+                    <p style="color: var(--text-secondary);">Pipeline-ready architecture compatible with modern R
+                        standards.</p>
+                </div>
+                <div class="glass-panel" style="padding: 2rem;">
+                    <h3 style="color: #10b981;">Easy API</h3>
+                    <p style="color: var(--text-secondary);">Familiar syntax for data scientists, with power under the
+                        hood.</p>
+                </div>
+            </section>
+
+            <!-- Code Preview -->
+            <section style="margin-top: 6rem;" class="slide-up">
+                <div class="grid-2">
+                    <div>
+                        <h2>Simple yet Powerful</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                            Build complex pipelines with just a few lines of code. VectorForgeML handles the heavy
+                            lifting.
+                        </p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 1rem;">✅ 30+ Algorithms implemented</li>
+                            <li style="margin-bottom: 1rem;">✅ Zero-copy data exchange</li>
+                            <li style="margin-bottom: 1rem;">✅ Native Pipeline support</li>
+                        </ul>
+                    </div>
+                    <div class="glass-panel" style="padding: 0;">
+                        <pre><code class="language-r">library(VectorForgeML)
+
+# Create a pipeline
+pipe <- Pipeline(
+  steps = list(
+    c("scaler", StandardScaler()),
+    c("pca", PCA(n_components = 2)),
+    c("model", LogisticRegression())
+  )
+)
+
+# Train in milliseconds
+pipe$fit(X_train, y_train)
+preds <- pipe$predict(X_test)
+</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Supported Algorithms Preview -->
+            <section style="margin-top: 6rem; text-align: center;">
+                <h2>Comprehensive Toolset</h2>
+                <div class="grid-3" style="margin-top: 3rem; text-align: left;">
+                    <a href="/docs/RandomForest.html" class="glass-panel"
+                        style="padding: 1.5rem; text-decoration: none; color: inherit; display: block; transition: transform 0.2s;">
+                        <h4>Random Forest</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Ensemble learning method for
+                            classification and regression.</p>
+                    </a>
+                    <a href="/docs/KMeans.html" class="glass-panel"
+                        style="padding: 1.5rem; text-decoration: none; color: inherit; display: block; transition: transform 0.2s;">
+                        <h4>K-Means</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Fast clustering with optimized
+                            centroid initialization.</p>
+                    </a>
+                    <a href="/docs/LinearRegression.html" class="glass-panel"
+                        style="padding: 1.5rem; text-decoration: none; color: inherit; display: block; transition: transform 0.2s;">
+                        <h4>Linear Regression</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Classic regression tailored for
+                            high-dimensional data.</p>
+                    </a>
+                </div>
+                <div style="margin-top: 3rem;">
+                    <a href="/docs/" class="btn-outline">View All Algorithms -></a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="footer"></div>
+
+    <script type="module" src="/assets/js/main.js"></script>
+</body>
+
+</html>

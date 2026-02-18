@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Test Split - VectorForgeML Docs</title>
+    <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <!-- MathJax for rendering formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="docs-layout">
+    <div id="navbar"></div>
+    <div id="sidebar"></div>
+
+    <div class="layout-container">
+        <main class="main-content">
+            <div style="margin-bottom: 2rem;">
+                <span style="font-size: 0.9rem; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 1px;">Algorithm</span>
+                <h1 class="fade-in" style="margin-top: 0.5rem;">Train Test Split</h1>
+            </div>
+
+            <section class="glass-panel slide-up" style="padding: 2rem; margin-bottom: 2rem;">
+                <h3>Description</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">
+                    Split arrays or matrices into random train and test subsets.
+                </p>
+                
+            </section>
+
+            
+
+            <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
+                <h3>Implementation Details</h3>
+                <div class="glass-panel" style="padding: 2rem;">
+                    <p style="color: var(--text-secondary);">Implemented in `split.R`.</p>
+                </div>
+                
+                <div class="glass-panel" style="margin-top: 1.5rem; padding: 0; overflow: hidden;">
+                    <pre><code class="language-r" style="font-size: 0.85rem;">train_test_split &lt;- function(X,y,test_size=0.2, seed=NULL){
+  if(!is.null(seed)) set.seed(seed)
+  n &lt;- nrow(X)
+  idx &lt;- sample(n)
+  split &lt;- max(2, floor(n*(1-test_size)))
+  train_idx &lt;- idx[1:split]
+  test_idx  &lt;- idx[(split+1):n]
+  list(X_train=X[train_idx,,drop=FALSE], X_test=X[test_idx,,drop=FALSE], 
+       y_train=y[train_idx], y_test=y[test_idx])
+}</code></pre>
+                </div>
+            </section>
+
+            
+
+             <section class="slide-up" style="animation-delay: 0.4s; margin-top: 3rem;">
+                <h3>Use Cases</h3>
+                 <p style="color: var(--text-secondary);">General purpose.</p>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="footer"></div>
+    <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>

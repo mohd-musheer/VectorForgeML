@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Means Clustering - VectorForgeML Docs</title>
+    <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <!-- MathJax for rendering formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="docs-layout">
+    <div id="navbar"></div>
+    <div id="sidebar"></div>
+
+    <div class="layout-container">
+        <main class="main-content">
+            <div style="margin-bottom: 2rem;">
+                <span style="font-size: 0.9rem; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 1px;">Algorithm</span>
+                <h1 class="fade-in" style="margin-top: 0.5rem;">K-Means Clustering</h1>
+            </div>
+
+            <section class="glass-panel slide-up" style="padding: 2rem; margin-bottom: 2rem;">
+                <h3>Description</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">
+                    An iterative unsupervised learning algorithm that partitions a dataset into K distinct, non-overlapping subgroups (clusters). Each data point belongs to the cluster with the nearest mean. The algorithm minimizes the within-cluster sum of squares (WCSS). It employs the classic Lloyd's algorithm with efficient C++ loops for distance calculation and centroid updates.
+                </p>
+                <div class="glass-panel" style="padding:1rem; margin:1rem 0; font-family:'Times New Roman', serif; font-size:1.1rem; text-align:center;">$$ \text{arg} \min_S \sum_{i=1}^k \sum_{\mathbf{x} \in S_i} ||\mathbf{x} - \mathbf{\mu}_i||^2 $$</div>
+            </section>
+
+            
+            <section class="slide-up" style="animation-delay: 0.1s; margin-top: 3rem;">
+                <h3>Algorithm Workflow</h3>
+                <div class="workflow-container">
+                    <div class="workflow-step">
+                                <span class="workflow-key">START</span>
+                                <span class="workflow-val">Specify $K$ clusters.</span>
+                            </div><div class="workflow-step">
+                                <span class="workflow-key">INIT</span>
+                                <span class="workflow-val">Randomly select $K$ data points as initial centroids $\mu^{(0)}$.</span>
+                            </div><div class="workflow-step">
+                                <span class="workflow-key">ASSIGN</span>
+                                <span class="workflow-val">For every point $x_i$, find the nearest centroid $c_j$ minimizing $||x_i - \mu_j||^2$.</span>
+                            </div><div class="workflow-step">
+                                <span class="workflow-key">UPDATE</span>
+                                <span class="workflow-val">Recalculate each centroid $\mu_j$ as the mean of all points assigned to it.</span>
+                            </div><div class="workflow-step">
+                                <span class="workflow-key">CHECK</span>
+                                <span class="workflow-val">If centroids have not changed (or change < epsilon), STOP.</span>
+                            </div><div class="workflow-step">
+                                <span class="workflow-key">LOOP</span>
+                                <span class="workflow-val">Otherwise, repeat the Assign and Update steps.</span>
+                            </div><div class="workflow-step">
+                                <span class="workflow-key">END</span>
+                                <span class="workflow-val">Return cluster labels and final centroid locations.</span>
+                            </div>
+                </div>
+            </section>
+
+            <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
+                <h3>Implementation Details</h3>
+                <div class="glass-panel" style="padding: 2rem;">
+                    <p style="color: var(--text-secondary);">Implemented in `KMeans.cpp`.</p>
+                </div>
+                
+                <div class="glass-panel" style="margin-top: 1.5rem; padding: 0; overflow: hidden;">
+                    <pre><code class="language-cpp" style="font-size: 0.85rem;">while(changed && iter &lt; max_iter) {
+    // Assignment
+    int c = nearest_centroid(row, centroids);
+    // Update
+    new_centroids[c] += row;
+    counts[c]++;
+}</code></pre>
+                </div>
+            </section>
+
+            
+            <section class="slide-up" style="animation-delay: 0.3s; margin-top: 3rem;">
+                <h3>Complexity & Optimization</h3>
+                <div class="grid-2">
+                    <div class="glass-panel" style="padding: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--accent-secondary);">Time Complexity</h4>
+                        <p style="color: var(--text-secondary); margin: 0;">O(I * N * K * P).</p>
+                    </div>
+                    <div class="glass-panel" style="padding: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--accent-primary);">Space Complexity</h4>
+                        <p style="color: var(--text-secondary); margin: 0;">O(K * P).</p>
+                    </div>
+                    <div class="glass-panel" style="padding: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">Optimizations</h4>
+                        <p style="color: var(--text-secondary); margin: 0;">In-place updates.</p>
+                    </div>
+                    <div class="glass-panel" style="padding: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: #ef4444;">Limitations</h4>
+                        <p style="color: var(--text-secondary); margin: 0;">Local optima.</p>
+                    </div>
+                </div>
+            </section>
+
+             <section class="slide-up" style="animation-delay: 0.4s; margin-top: 3rem;">
+                <h3>Use Cases</h3>
+                 <p style="color: var(--text-secondary);">Clustering.</p>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="footer"></div>
+    <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>

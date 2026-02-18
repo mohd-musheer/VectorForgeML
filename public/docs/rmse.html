@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root Mean Squared Error - VectorForgeML Docs</title>
+    <link rel="icon" type="image/png" href="/assets/images/VectorForgeML_Logo.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <!-- MathJax for rendering formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="docs-layout">
+    <div id="navbar"></div>
+    <div id="sidebar"></div>
+
+    <div class="layout-container">
+        <main class="main-content">
+            <div style="margin-bottom: 2rem;">
+                <span style="font-size: 0.9rem; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 1px;">Algorithm</span>
+                <h1 class="fade-in" style="margin-top: 0.5rem;">Root Mean Squared Error</h1>
+            </div>
+
+            <section class="glass-panel slide-up" style="padding: 2rem; margin-bottom: 2rem;">
+                <h3>Description</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">
+                    The square root of the mean squared error.
+                </p>
+                
+            </section>
+
+            
+
+            <section class="slide-up" style="animation-delay: 0.2s; margin-top: 3rem;">
+                <h3>Implementation Details</h3>
+                <div class="glass-panel" style="padding: 2rem;">
+                    <p style="color: var(--text-secondary);">Implemented in `metrics.R`.</p>
+                </div>
+                
+                <div class="glass-panel" style="margin-top: 1.5rem; padding: 0; overflow: hidden;">
+                    <pre><code class="language-r" style="font-size: 0.85rem;">rmse &lt;- function(y_true,y_pred){
+  sqrt(mse(y_true,y_pred))
+}</code></pre>
+                </div>
+            </section>
+
+            
+
+             <section class="slide-up" style="animation-delay: 0.4s; margin-top: 3rem;">
+                <h3>Use Cases</h3>
+                 <p style="color: var(--text-secondary);">General purpose.</p>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="footer"></div>
+    <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>
