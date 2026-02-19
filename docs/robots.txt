@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vectorforgeml.com/sitemap.xml

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Mohd Musheer">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Install VectorForgeML">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vectorforgeml.com/install/index.html">
+    <meta property="og:image" content="https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Install VectorForgeML">
+    <meta name="twitter:image" content="https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install VectorForgeML</title>
+    <link rel="icon" type="image/png" href="../assets/images/VectorForgeML_Logo.png">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="navbar"></div>
+
+    <div class="layout-container">
+        <main class="main-content">
+            <h1 class="fade-in">Installation</h1>
+
+            <section class="glass-panel slide-up" style="padding: 2rem; margin-top: 2rem;">
+                <h3>Prerequisites</h3>
+                <p style="color: var(--text-secondary);">Ensure you have R (>= 4.0.0) and a C++ compiler installed.</p>
+
+                <h3 class="mt-4">From GitHub</h3>
+                <p style="color: var(--text-secondary);">VectorForgeML is hosted on GitHub. You can install the
+                    development version using `remotes`.</p>
+
+                <div style="position: relative; margin-top: 1rem;">
+                    <pre><code class="language-r">install.packages("remotes", repos="https://cloud.r-project.org")
+remotes::install_github("mohd-musheer/VectorForgeML")</code></pre>
+                </div>
+
+                <h3 class="mt-4">Verify Installation</h3>
+                <pre><code class="language-r">library(VectorForgeML)
+# Check available functions
+ls("package:VectorForgeML")</code></pre>
+            </section>
+
+            <section class="mt-4 slide-up" style="animation-delay: 0.1s;">
+                <h2>Troubleshooting</h2>
+                <div class="glass-panel" style="padding: 2rem; margin-top: 1rem;">
+                    <h4>Compiler Errors?</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 0;">
+                        If you encounter compilation errors on Windows, ensure RTools is installed and added to your
+                        PATH. On macOS, ensure Xcode Command Line Tools are installed.
+                    </p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="footer"></div>
+    <script type="module" src="../assets/js/main.js" defer></script>
+</body>
+
+</html>

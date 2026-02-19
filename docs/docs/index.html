@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Mohd Musheer">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Documentation - VectorForgeML">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vectorforgeml.com/docs/index.html">
+    <meta property="og:image" content="https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Documentation - VectorForgeML">
+    <meta name="twitter:image" content="https://vectorforgeml.com/assets/images/VectorForgeML_Logo.png">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - VectorForgeML</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/images/VectorForgeML_Logo.png">
+</head>
+
+<body class="docs-layout">
+    <div id="navbar"></div>
+    <div id="sidebar"></div>
+
+    <div class="layout-container">
+        <main class="main-content">
+            <h1 class="fade-in">Documentation</h1>
+            <p class="fade-in" style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 3rem;">
+                Usage guides, API references, and examples for VectorForgeML.
+            </p>
+
+            <section class="slide-up">
+                <h2>Quick Start</h2>
+                <div class="glass-panel" style="padding: 2rem; margin-top: 1rem;">
+                    <p>Get up and running with a simple classification pipeline.</p>
+                    <pre><code class="language-r">library(VectorForgeML)
+
+# Load data
+data(iris)
+
+# Create pipeline
+pipe <- Pipeline(steps = list(
+    c("scaler", StandardScaler()),
+    c("model", SoftmaxRegression())
+))
+
+# Train
+pipe$fit(iris[, 1:4], iris[, 5])
+</code></pre>
+                </div>
+            </section>
+
+            <section class="slide-up" style="margin-top: 4rem; animation-delay: 0.1s;">
+                <h2>API Reference</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Explore the available modules and
+                    algorithms.</p>
+
+                <div class="grid-3" id="algo-grid">
+                    <!-- Injected by JS or Static Listing -->
+                    <!-- We will auto-generate links here for now as a fallback -->
+                    <a href="../docs/RandomForest.html" class="glass-panel"
+                        style="padding: 1.5rem; text-decoration: none; color: inherit; display: block;">
+                        <h4>Random Forest</h4>
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">Ensemble Learning</span>
+                    </a>
+                    <a href="../docs/LinearRegression.html" class="glass-panel"
+                        style="padding: 1.5rem; text-decoration: none; color: inherit; display: block;">
+                        <h4>Linear Regression</h4>
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">Regression</span>
+                    </a>
+                    <a href="../docs/KMeans.html" class="glass-panel"
+                        style="padding: 1.5rem; text-decoration: none; color: inherit; display: block;">
+                        <h4>K-Means</h4>
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">Clustering</span>
+                    </a>
+                    <a href="../docs/PCA.html" class="glass-panel"
+                        style="padding: 1.5rem; text-decoration: none; color: inherit; display: block;">
+                        <h4>PCA</h4>
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">Dimensionality Reduction</span>
+                    </a>
+                </div>
+                <!-- Full list will be in Sidebar -->
+            </section>
+        </main>
+    </div>
+
+    <div id="footer"></div>
+    <script type="module" src="../assets/js/main.js" defer></script>
+</body>
+
+</html>
