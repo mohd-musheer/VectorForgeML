@@ -49,6 +49,10 @@ void softmax_fit(SEXP ptr,
 
   vector<double> Z(n * k);
   vector<double> Err(n * k);
+  vector<double> gradW(p * k);
+  vector<double> gradb(k);
+  vector<double> logits(k);
+  
   const char* transN = "N";
   const char* transT = "T";
   double alpha = 1.0;

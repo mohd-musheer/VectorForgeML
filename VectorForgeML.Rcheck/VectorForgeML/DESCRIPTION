@@ -21,3 +21,5 @@ NeedsCompilation: yes
 Packaged: 2026-02-20 14:59:26 UTC; mushe
 Author: Musheer Ayan [aut, cre]
 Maintainer: Musheer Ayan <musheerayan@gmail.com>
+Built: R 4.5.2; x86_64-w64-mingw32; 2026-02-20 15:01:00 UTC; windows
+Archs: x64

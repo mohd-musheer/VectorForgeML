@@ -5,23 +5,35 @@ df <- read.csv("inst/dataset/winequality.csv",sep=";")
 y <- df$quality
 X <- df; X$quality<-NULL
 
-split <- train_test_split(X,y,0.2,42)
+# Split
+split <- train_test_split(X, y, 0.2, 42)
 
-cat_cols <- names(X)[sapply(X,is.character)]
-num_cols <- names(X)[!sapply(X,is.character)]
+# Column detection
+cat_cols <- names(X)[sapply(X, is.character)]
+num_cols <- names(X)[!sapply(X, is.character)]
 
+# Pipeline Setup
 pre <- ColumnTransformer$new(
-  num_cols,cat_cols,
-  StandardScaler$new(),
-  OneHotEncoder$new()
+  num_cols = num_cols,
+  cat_cols = cat_cols,
+  num_pipeline = StandardScaler$new(),
+  cat_pipeline = OneHotEncoder$new()
 )
 
+# RandomForest specific parameters: ntrees=100, max_depth=7
 pipe <- Pipeline$new(list(
   pre,
-  RandomForest$new(ntrees=100,max_depth=7,4,mode="classification")
+  RandomForest$new(ntrees=100, max_depth=7, mtry=4, mode="classification")
 ))
 
-pipe$fit(split$X_train,split$y_train)
+# Benchmark Training Time
+start_time <- Sys.time()
+pipe$fit(split$X_train, split$y_train)
+end_time <- Sys.time()
+
+# Predict and Evaluate
 pred <- pipe$predict(split$X_test)
 
-cat("Accuracy:",accuracy_score(split$y_test,round(pred)),"\n")
+cat("\n--- VectorForgeML Performance ---\n")
+cat("Train Time:", as.numeric(end_time - start_time), "seconds\n")
+cat("Accuracy:  ", accuracy_score(split$y_test, round(pred)), "\n")
