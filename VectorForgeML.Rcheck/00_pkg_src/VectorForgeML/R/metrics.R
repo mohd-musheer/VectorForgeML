@@ -6,6 +6,11 @@
 #' @param y_pred predicted values
 #'
 #' @return numeric mse
+#'
+#' @details
+#' Provides functionality for mse operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#'
 #' @export
 mse <- function(y_true,y_pred){
   mean((y_true-y_pred)^2, na.rm=TRUE)
@@ -19,6 +24,11 @@ mse <- function(y_true,y_pred){
 #' @param y_pred predicted values
 #'
 #' @return numeric rmse
+#'
+#' @details
+#' Provides functionality for rmse operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#'
 #' @export
 rmse <- function(y_true,y_pred){
   sqrt(mse(y_true,y_pred))
@@ -33,6 +43,11 @@ rmse <- function(y_true,y_pred){
 #' @param y_pred predicted values
 #'
 #' @return numeric r2 score
+#'
+#' @details
+#' Provides functionality for r2_score operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#'
 #' @export
 r2_score <- function(y_true,y_pred){
 
@@ -60,6 +75,15 @@ r2_score <- function(y_true,y_pred){
 #' @param y_pred predicted labels
 #'
 #' @return numeric accuracy
+#'
+#' @details
+#' Provides functionality for accuracy_score operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   y_true <- c(1,0,1,1)
+#'   y_pred <- c(1,0,0,1)
+#'   accuracy_score(y_true, y_pred)
+#'
 #' @export
 accuracy_score <- function(y_true, y_pred){
   y_true <- as.vector(y_true)
@@ -76,6 +100,15 @@ accuracy_score <- function(y_true, y_pred){
 #' @param y_pred predicted labels
 #' @param positive positive class label
 #' @return numeric precision
+#'
+#' @details
+#' Provides functionality for precision_score operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   y_true <- c(1,0,1,1)
+#'   y_pred <- c(1,0,0,1)
+#'   precision_score(y_true, y_pred)
+#'
 #' @export
 precision_score <- function(y_true, y_pred, positive = NULL){
   y_true <- as.vector(y_true)
@@ -100,6 +133,15 @@ precision_score <- function(y_true, y_pred, positive = NULL){
 #' @param y_pred predicted labels
 #' @param positive positive class label
 #' @return numeric recall
+#'
+#' @details
+#' Provides functionality for recall_score operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   y_true <- c(1,0,1,1)
+#'   y_pred <- c(1,0,0,1)
+#'   recall_score(y_true, y_pred)
+#'
 #' @export
 recall_score <- function(y_true, y_pred, positive = NULL){
   y_true <- as.vector(y_true)
@@ -124,6 +166,15 @@ recall_score <- function(y_true, y_pred, positive = NULL){
 #' @param y_pred predicted labels
 #' @param positive positive class label
 #' @return numeric f1 score
+#'
+#' @details
+#' Provides functionality for f1_score operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   y_true <- c(1,0,1,1)
+#'   y_pred <- c(1,0,0,1)
+#'   f1_score(y_true, y_pred)
+#'
 #' @export
 f1_score <- function(y_true, y_pred, positive = NULL){
   p <- precision_score(y_true, y_pred, positive)
@@ -146,6 +197,11 @@ f1_score <- function(y_true, y_pred, positive = NULL){
 #' @param y_pred predicted labels
 #'
 #' @return numeric score
+#'
+#' @details
+#' Provides functionality for macro_precision operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#'
 #' @export
 macro_precision <- function(y_true, y_pred){
   classes <- unique(y_true)
@@ -161,6 +217,11 @@ macro_precision <- function(y_true, y_pred){
 #' @param y_pred predicted labels
 #'
 #' @return numeric score
+#'
+#' @details
+#' Provides functionality for macro_recall operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#'
 #' @export
 macro_recall <- function(y_true, y_pred){
   classes <- unique(y_true)
@@ -176,6 +237,11 @@ macro_recall <- function(y_true, y_pred){
 #' @param y_pred predicted labels
 #'
 #' @return numeric score
+#'
+#' @details
+#' Provides functionality for macro_f1 operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#'
 #' @export
 macro_f1 <- function(y_true, y_pred){
   classes <- unique(y_true)
@@ -191,6 +257,15 @@ macro_f1 <- function(y_true, y_pred){
 #' @param y_pred predicted labels
 #'
 #' @return matrix
+#'
+#' @details
+#' Provides functionality for confusion_matrix operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   y_true <- c(1,0,1,1)
+#'   y_pred <- c(1,0,0,1)
+#'   confusion_matrix(y_true, y_pred)
+#'
 #' @export
 confusion_matrix <- function(y_true, y_pred){
 
@@ -223,6 +298,14 @@ confusion_matrix <- function(y_true, y_pred){
 #' @param cm confusion matrix
 #'
 #' @return list
+#'
+#' @details
+#' Provides functionality for confusion_stats operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   cm <- matrix(c(10, 2, 1, 15), nrow=2)
+#'   try({ confusion_stats(cm) })
+#'
 #' @export
 confusion_stats <- function(cm){
 
@@ -248,6 +331,14 @@ confusion_stats <- function(cm){
 #' @param cm confusion matrix
 #' @param normalize Normlize 
 #' @return plot
+#'
+#' @details
+#' Provides functionality for plot_confusion_matrix operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   cm <- matrix(c(10, 2, 1, 15), nrow=2)
+#'   try({ plot_confusion_matrix(cm) })
+#'
 #' @export
 plot_confusion_matrix <- function(cm, normalize=TRUE){
 
@@ -259,6 +350,8 @@ plot_confusion_matrix <- function(cm, normalize=TRUE){
 
   palette <- colorRampPalette(c("#3B4CC0","#FFFFFF","#B40426"))(100)
 
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   par(mar=c(5,5,2,2))
 
   image(

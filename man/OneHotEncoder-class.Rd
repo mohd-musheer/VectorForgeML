@@ -11,4 +11,17 @@ OneHotEncoder object
 \description{
 Converts categorical variables into binary vectors.
 }
+\details{
+Provides functionality for OneHotEncoder operations.
+}
 
+\examples{
+  enc <- OneHotEncoder$new()
+  df <- data.frame(a=c("x","y","x"))
+  enc$fit(df)
+  enc$transform(df)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

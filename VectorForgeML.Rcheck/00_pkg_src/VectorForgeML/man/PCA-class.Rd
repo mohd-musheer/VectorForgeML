@@ -11,4 +11,17 @@ PCA object
 \description{
 Dimensionality reduction technique.
 }
+\details{
+Provides functionality for PCA operations.
+}
 
+\examples{
+  model <- PCA$new(n_components=2)
+  X <- matrix(rnorm(30), nrow=10)
+  model$fit(X)
+  model$transform(X)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

@@ -19,3 +19,15 @@ numeric f1 score
 \description{
 Harmonic mean of precision and recall.
 }
+\details{
+Provides functionality for f1_score operations.
+}
+\examples{
+  y_true <- c(1,0,1,1)
+  y_pred <- c(1,0,0,1)
+  f1_score(y_true, y_pred)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

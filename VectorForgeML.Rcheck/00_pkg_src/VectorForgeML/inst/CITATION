@@ -1,9 +1,9 @@
 citHeader("To cite VectorForgeML:")
 
-citEntry(
-  entry = "Manual",
+bibentry(
+  bibtype = "Manual",
   title = "VectorForgeML: High Performance Machine Learning Framework",
-  author = "Mohd Musheer",
+  author = person("Mohd", "Musheer"),
   year = "2026",
   note = "R package version 0.1.0"
 )

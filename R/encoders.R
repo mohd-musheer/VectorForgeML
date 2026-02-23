@@ -7,10 +7,21 @@
 #' Converts categorical labels into numeric values.
 #'
 #' @return LabelEncoder object
-#' @export
+#'
+#' @details
+#' Provides functionality for LabelEncoder operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   enc <- LabelEncoder$new()
+#'   x <- c("a", "b", "a")
+#'   enc$fit(x)
+#'   enc$transform(x)
+#'
+#' @export LabelEncoder
+#' @exportClass LabelEncoder
 LabelEncoder <- setRefClass(
   "LabelEncoder",
-  fields=list(map="list"),
+  fields=list(map="ANY"),
 
   methods=list(
 
@@ -41,7 +52,18 @@ LabelEncoder <- setRefClass(
 #' Converts categorical variables into binary vectors.
 #'
 #' @return OneHotEncoder object
-#' @export
+#'
+#' @details
+#' Provides functionality for OneHotEncoder operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   enc <- OneHotEncoder$new()
+#'   df <- data.frame(a=c("x","y","x"))
+#'   enc$fit(df)
+#'   enc$transform(df)
+#'
+#' @export OneHotEncoder
+#' @exportClass OneHotEncoder
 OneHotEncoder <- setRefClass(
   "OneHotEncoder",
   fields=list(categories="list"),

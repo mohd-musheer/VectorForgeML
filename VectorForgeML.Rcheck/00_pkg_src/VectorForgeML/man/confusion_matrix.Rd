@@ -17,3 +17,15 @@ matrix
 \description{
 Computes confusion matrix.
 }
+\details{
+Provides functionality for confusion_matrix operations.
+}
+\examples{
+  y_true <- c(1,0,1,1)
+  y_pred <- c(1,0,0,1)
+  confusion_matrix(y_true, y_pred)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

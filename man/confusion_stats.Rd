@@ -15,3 +15,14 @@ list
 \description{
 Calculates accuracy, precision, recall, F1 from confusion matrix.
 }
+\details{
+Provides functionality for confusion_stats operations.
+}
+\examples{
+  cm <- matrix(c(10, 2, 1, 15), nrow=2)
+  try({ confusion_stats(cm) })
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

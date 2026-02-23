@@ -42,7 +42,15 @@ pipeline_is_estimator <- function(obj) {
 #' Chains preprocessing and model steps.
 #'
 #' @return Pipeline object
-#' @export
+#'
+#' @details
+#' Provides functionality for Pipeline operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   model <- Pipeline$new(list(StandardScaler$new()))
+#'
+#' @export Pipeline
+#' @exportClass Pipeline
 Pipeline <- setRefClass(
   "Pipeline",
 

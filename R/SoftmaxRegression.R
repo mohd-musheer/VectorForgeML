@@ -3,7 +3,19 @@
 #' Multiclass logistic regression.
 #'
 #' @return SoftmaxRegression object
-#' @export
+#'
+#' @details
+#' Provides functionality for SoftmaxRegression operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   model <- SoftmaxRegression$new()
+#'   X <- matrix(rnorm(20), nrow=10)
+#'   y <- sample(0:2, 10, replace=TRUE)
+#'   model$fit(X,y)
+#'   model$predict(X)
+#'
+#' @export SoftmaxRegression
+#' @exportClass SoftmaxRegression
 SoftmaxRegression <- setRefClass(
   "SoftmaxRegression",
   fields=list(ptr="externalptr"),

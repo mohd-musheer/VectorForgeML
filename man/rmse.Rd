@@ -17,3 +17,9 @@ numeric rmse
 \description{
 Square root of MSE.
 }
+\details{
+Provides functionality for rmse operations.
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

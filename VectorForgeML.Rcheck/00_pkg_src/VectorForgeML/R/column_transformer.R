@@ -61,7 +61,15 @@ validate_df_columns <- function(df, columns, label) {
 #' Applies transformations to specific columns.
 #'
 #' @return ColumnTransformer object
-#' @export
+#'
+#' @details
+#' Provides functionality for ColumnTransformer operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   model <- ColumnTransformer$new(num_cols="A", cat_cols="B")
+#'
+#' @export ColumnTransformer
+#' @exportClass ColumnTransformer
 ColumnTransformer <- setRefClass(
   "ColumnTransformer",
 

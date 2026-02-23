@@ -11,4 +11,18 @@ SoftmaxRegression object
 \description{
 Multiclass logistic regression.
 }
+\details{
+Provides functionality for SoftmaxRegression operations.
+}
 
+\examples{
+  model <- SoftmaxRegression$new()
+  X <- matrix(rnorm(20), nrow=10)
+  y <- sample(0:2, 10, replace=TRUE)
+  model$fit(X,y)
+  model$predict(X)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

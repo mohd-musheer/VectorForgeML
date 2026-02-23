@@ -11,4 +11,18 @@ KNN object
 \description{
 Instance-based learning algorithm.
 }
+\details{
+Provides functionality for KNN operations.
+}
 
+\examples{
+  model <- KNN$new(k=3, mode="classification")
+  X <- matrix(rnorm(20), nrow=10)
+  y <- sample(0:1, 10, replace=TRUE)
+  model$fit(X,y)
+  model$predict(X)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

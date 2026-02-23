@@ -9,7 +9,18 @@
 #' @param X input matrix/dataframe
 #'
 #' @return cleaned matrix
-#' @export
+#'
+#' @details
+#' Provides functionality for StandardScaler operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   s <- StandardScaler$new()
+#'   x <- matrix(rnorm(20), nrow=10)
+#'   s$fit(x)
+#'   s$transform(x)
+#'
+#' @export StandardScaler
+#' @exportClass StandardScaler
 StandardScaler <- setRefClass(
   "StandardScaler",
   fields=list(
@@ -73,7 +84,18 @@ StandardScaler <- setRefClass(
 #' Standardizes features by removing mean and scaling to unit variance.
 #'
 #' @return StandardScaler object
-#' @export
+#'
+#' @details
+#' Provides functionality for MinMaxScaler operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   s <- MinMaxScaler$new()
+#'   x <- matrix(rnorm(20), nrow=10)
+#'   s$fit(x)
+#'   s$transform(x)
+#'
+#' @export MinMaxScaler
+#' @exportClass MinMaxScaler
 MinMaxScaler <- setRefClass(
   "MinMaxScaler",
   fields=list(

@@ -17,3 +17,15 @@ model object
 \description{
 Internal helper for linear regression training.
 }
+\details{
+Provides functionality for fit_linear_model operations.
+}
+\examples{
+  X <- matrix(rnorm(20), nrow=10)
+  y <- rnorm(10)
+  try({ fit_linear_model(X, y) })
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

@@ -19,3 +19,15 @@ numeric recall
 \description{
 Computes recall metric.
 }
+\details{
+Provides functionality for recall_score operations.
+}
+\examples{
+  y_true <- c(1,0,1,1)
+  y_pred <- c(1,0,0,1)
+  recall_score(y_true, y_pred)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

@@ -3,7 +3,18 @@
 #' Dimensionality reduction technique.
 #'
 #' @return PCA object
-#' @export
+#'
+#' @details
+#' Provides functionality for PCA operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   model <- PCA$new(n_components=2)
+#'   X <- matrix(rnorm(30), nrow=10)
+#'   model$fit(X)
+#'   model$transform(X)
+#'
+#' @export PCA
+#' @exportClass PCA
 PCA <- setRefClass(
   "PCA",
   fields=list(ptr="externalptr", ncomp="numeric"),

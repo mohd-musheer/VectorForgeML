@@ -17,3 +17,9 @@ numeric score
 \description{
 Computes macro-averaged precision.
 }
+\details{
+Provides functionality for macro_f1 operations.
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

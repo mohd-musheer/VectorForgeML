@@ -17,3 +17,9 @@ numeric mse
 \description{
 Calculates regression error.
 }
+\details{
+Provides functionality for mse operations.
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

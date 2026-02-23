@@ -11,7 +11,13 @@
 #' model$fit(X,y)
 #' model$predict(X)
 #'
-#' @export
+#'
+#' @details
+#' Provides functionality for LinearRegression operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#'
+#' @export LinearRegression
+#' @exportClass LinearRegression
 LinearRegression <- setRefClass(
   "LinearRegression",
   fields = list(ptr = "externalptr"),

@@ -7,6 +7,15 @@
 #' @param test_size proportion for test set
 #' @param seed for random seed
 #' @return list
+#'
+#' @details
+#' Provides functionality for train_test_split operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   X <- matrix(rnorm(20), nrow=10)
+#'   y <- sample(0:1, 10, replace=TRUE)
+#'   train_test_split(X, y, test_size=0.2)
+#'
 #' @export
 train_test_split <- function(X,y,test_size=0.2, seed=NULL){
 

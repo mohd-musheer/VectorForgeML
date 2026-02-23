@@ -11,4 +11,16 @@ KMeans object
 \description{
 Unsupervised clustering algorithm.
 }
+\details{
+Provides functionality for KMeans operations.
+}
 
+\examples{
+  x <- matrix(rnorm(20), nrow=10)
+  model <- KMeans$new()
+  model$fit(x)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

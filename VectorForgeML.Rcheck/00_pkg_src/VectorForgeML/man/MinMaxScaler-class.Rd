@@ -11,4 +11,17 @@ StandardScaler object
 \description{
 Standardizes features by removing mean and scaling to unit variance.
 }
+\details{
+Provides functionality for MinMaxScaler operations.
+}
 
+\examples{
+  s <- MinMaxScaler$new()
+  x <- matrix(rnorm(20), nrow=10)
+  s$fit(x)
+  s$transform(x)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

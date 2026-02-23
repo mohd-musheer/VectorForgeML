@@ -11,4 +11,18 @@ DecisionTree object
 \description{
 Tree-based classification/regression algorithm.
 }
+\details{
+Provides functionality for DecisionTree operations.
+}
 
+\examples{
+  model <- DecisionTree$new()
+  X <- matrix(rnorm(20), nrow=10)
+  y <- sample(0:1, 10, replace=TRUE)
+  model$fit(X,y)
+  model$predict(X)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

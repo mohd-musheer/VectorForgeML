@@ -13,6 +13,13 @@
 ^public$
 ^docs$
 ^\.github$
+^Banchmarks$
+^dataCPP\.txt$
+^getdata\.py$
+^\.github$
+^build\.log$
+^LICENSE\.md$
+^VectorForgeML-manual\.tex$
 ^\.git$
 ^README\.md$
 ^CNAME$

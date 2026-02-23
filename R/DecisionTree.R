@@ -3,7 +3,19 @@
 #' Tree-based classification/regression algorithm.
 #'
 #' @return DecisionTree object
-#' @export
+#'
+#' @details
+#' Provides functionality for DecisionTree operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   model <- DecisionTree$new()
+#'   X <- matrix(rnorm(20), nrow=10)
+#'   y <- sample(0:1, 10, replace=TRUE)
+#'   model$fit(X,y)
+#'   model$predict(X)
+#'
+#' @export DecisionTree
+#' @exportClass DecisionTree
 DecisionTree <- setRefClass(
   "DecisionTree",
   fields=list(ptr="externalptr"),

@@ -11,4 +11,17 @@ LabelEncoder object
 \description{
 Converts categorical labels into numeric values.
 }
+\details{
+Provides functionality for LabelEncoder operations.
+}
 
+\examples{
+  enc <- LabelEncoder$new()
+  x <- c("a", "b", "a")
+  enc$fit(x)
+  enc$transform(x)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

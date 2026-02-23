@@ -11,4 +11,18 @@ RidgeRegression object
 \description{
 Linear regression with L2 regularization.
 }
+\details{
+Provides functionality for RidgeRegression operations.
+}
 
+\examples{
+  model <- RidgeRegression$new()
+  X <- matrix(rnorm(20), nrow=10)
+  y <- rnorm(10)
+  model$fit(X,y,lambda=1.0)
+  model$predict(X)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

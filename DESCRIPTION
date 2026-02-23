@@ -2,13 +2,15 @@ Package: VectorForgeML
 Type: Package
 Title: High-Performance Machine Learning Framework with C++ Acceleration
 Version: 0.1.0
-Authors@R: 
+Authors@R:
     person(given = "Musheer",
-           family = "Ayan",
+           family = "Mohd",
            role = c("aut", "cre"),
            email = "musheerayan@gmail.com")
-Description: Provides machine learning algorithms implemented in C++ with an R interface. Includes regression, classification, clustering, preprocessing utilities, evaluation metrics, and pipeline tools designed for efficient model training and prediction.
-License: MIT + file LICENSE
+Description: Machine learning utilities for fast vectorized model training.
+    Methods are based on standard statistical learning references such as
+    Hastie et al. (2009) <doi:10.1007/978-0-387-84858-7>.
+License: Apache License (>= 2)
 Encoding: UTF-8
 Depends: R (>= 3.5.0)
 Imports: methods, Rcpp
@@ -17,3 +19,4 @@ SystemRequirements: OpenMP (optional)
 URL: https://vectorforgeml.work.gd
 BugReports: https://github.com/mohd-musheer/VectorForgeML/issues
 NeedsCompilation: yes
+RoxygenNote: 7.3.3

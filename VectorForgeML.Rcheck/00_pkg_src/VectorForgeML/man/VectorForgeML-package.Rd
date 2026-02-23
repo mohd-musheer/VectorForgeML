@@ -8,4 +8,16 @@
 \description{
 Fast machine learning models implemented in C++.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://vectorforgeml.work.gd}
+  \item Report bugs at \url{https://github.com/mohd-musheer/VectorForgeML/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Musheer Mohd \email{musheerayan@gmail.com}
+
+}
 \keyword{internal}

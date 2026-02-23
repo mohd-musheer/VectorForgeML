@@ -11,4 +11,14 @@ Pipeline object
 \description{
 Chains preprocessing and model steps.
 }
+\details{
+Provides functionality for Pipeline operations.
+}
 
+\examples{
+  model <- Pipeline$new(list(StandardScaler$new()))
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

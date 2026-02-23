@@ -11,6 +11,9 @@ LinearRegression object
 \description{
 Fast linear regression implemented in C++ backend.
 }
+\details{
+Provides functionality for LinearRegression operations.
+}
 
 \examples{
 model <- LinearRegression$new()
@@ -19,4 +22,8 @@ y <- rnorm(50)
 model$fit(X,y)
 model$predict(X)
 
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
 }

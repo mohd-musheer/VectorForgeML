@@ -3,7 +3,19 @@
 #' Ensemble of decision trees.
 #'
 #' @return RandomForest object
-#' @export
+#'
+#' @details
+#' Provides functionality for RandomForest operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   model <- RandomForest$new(ntrees=5)
+#'   X <- matrix(rnorm(20), nrow=10)
+#'   y <- sample(0:1, 10, replace=TRUE)
+#'   model$fit(X,y)
+#'   model$predict(X)
+#'
+#' @export RandomForest
+#' @exportClass RandomForest
 RandomForest <- setRefClass(
   "RandomForest",
   fields=list(ptr="externalptr"),

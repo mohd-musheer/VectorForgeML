@@ -14,4 +14,17 @@ cleaned matrix
 \description{
 Removes columns with zero variance.
 }
+\details{
+Provides functionality for StandardScaler operations.
+}
 
+\examples{
+  s <- StandardScaler$new()
+  x <- matrix(rnorm(20), nrow=10)
+  s$fit(x)
+  s$transform(x)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

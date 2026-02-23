@@ -6,6 +6,15 @@
 #' @param y labels
 #' @param k_values for k value
 #' @return numeric best k
+#'
+#' @details
+#' Provides functionality for find_best_k operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   x <- matrix(rnorm(200), nrow=100)
+#'   y <- sample(0:1, 100, replace=TRUE)
+#'   find_best_k(x, y, k_values=c(1,3,5))
+#'
 #' @export
 find_best_k <- function(X,y,k_values=seq(1,15,2)){
 

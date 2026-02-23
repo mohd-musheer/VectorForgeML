@@ -3,7 +3,19 @@
 #' Linear regression with L2 regularization.
 #'
 #' @return RidgeRegression object
-#' @export
+#'
+#' @details
+#' Provides functionality for RidgeRegression operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   model <- RidgeRegression$new()
+#'   X <- matrix(rnorm(20), nrow=10)
+#'   y <- rnorm(10)
+#'   model$fit(X,y,lambda=1.0)
+#'   model$predict(X)
+#'
+#' @export RidgeRegression
+#' @exportClass RidgeRegression
 RidgeRegression <- setRefClass(
   "RidgeRegression",
   fields=list(ptr="externalptr"),

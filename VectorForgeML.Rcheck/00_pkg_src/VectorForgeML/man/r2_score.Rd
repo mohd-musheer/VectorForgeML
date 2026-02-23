@@ -17,3 +17,9 @@ numeric r2 score
 \description{
 Coefficient of determination.
 }
+\details{
+Provides functionality for r2_score operations.
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

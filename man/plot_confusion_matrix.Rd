@@ -17,3 +17,14 @@ plot
 \description{
 Visualizes confusion matrix.
 }
+\details{
+Provides functionality for plot_confusion_matrix operations.
+}
+\examples{
+  cm <- matrix(c(10, 2, 1, 15), nrow=2)
+  try({ plot_confusion_matrix(cm) })
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

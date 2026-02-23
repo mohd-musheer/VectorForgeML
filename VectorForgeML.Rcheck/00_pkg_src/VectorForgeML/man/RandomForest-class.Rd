@@ -11,4 +11,18 @@ RandomForest object
 \description{
 Ensemble of decision trees.
 }
+\details{
+Provides functionality for RandomForest operations.
+}
 
+\examples{
+  model <- RandomForest$new(ntrees=5)
+  X <- matrix(rnorm(20), nrow=10)
+  y <- sample(0:1, 10, replace=TRUE)
+  model$fit(X,y)
+  model$predict(X)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

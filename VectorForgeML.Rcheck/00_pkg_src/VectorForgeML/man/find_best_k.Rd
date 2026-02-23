@@ -19,3 +19,15 @@ numeric best k
 \description{
 Finds optimal K value for KNN.
 }
+\details{
+Provides functionality for find_best_k operations.
+}
+\examples{
+  x <- matrix(rnorm(200), nrow=100)
+  y <- sample(0:1, 100, replace=TRUE)
+  find_best_k(x, y, k_values=c(1,3,5))
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

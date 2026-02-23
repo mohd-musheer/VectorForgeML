@@ -11,4 +11,14 @@ ColumnTransformer object
 \description{
 Applies transformations to specific columns.
 }
+\details{
+Provides functionality for ColumnTransformer operations.
+}
 
+\examples{
+  model <- ColumnTransformer$new(num_cols="A", cat_cols="B")
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

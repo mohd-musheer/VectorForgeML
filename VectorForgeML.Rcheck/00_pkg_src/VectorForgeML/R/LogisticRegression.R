@@ -3,7 +3,19 @@
 #' Binary classification logistic regression.
 #'
 #' @return LogisticRegression object
-#' @export
+#'
+#' @details
+#' Provides functionality for LogisticRegression operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   model <- LogisticRegression$new()
+#'   X <- matrix(rnorm(20), nrow=10)
+#'   y <- sample(0:1, 10, replace=TRUE)
+#'   model$fit(X,y)
+#'   model$predict(X)
+#'
+#' @export LogisticRegression
+#' @exportClass LogisticRegression
 LogisticRegression <- setRefClass(
   "LogisticRegression",
   fields=list(ptr="externalptr"),

@@ -11,4 +11,18 @@ LogisticRegression object
 \description{
 Binary classification logistic regression.
 }
+\details{
+Provides functionality for LogisticRegression operations.
+}
 
+\examples{
+  model <- LogisticRegression$new()
+  X <- matrix(rnorm(20), nrow=10)
+  y <- sample(0:1, 10, replace=TRUE)
+  model$fit(X,y)
+  model$predict(X)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

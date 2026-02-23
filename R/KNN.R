@@ -3,7 +3,19 @@
 #' Instance-based learning algorithm.
 #'
 #' @return KNN object
-#' @export
+#'
+#' @details
+#' Provides functionality for KNN operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   model <- KNN$new(k=3, mode="classification")
+#'   X <- matrix(rnorm(20), nrow=10)
+#'   y <- sample(0:1, 10, replace=TRUE)
+#'   model$fit(X,y)
+#'   model$predict(X)
+#'
+#' @export KNN
+#' @exportClass KNN
 KNN <- setRefClass(
   "KNN",
   fields=list(ptr="externalptr"),

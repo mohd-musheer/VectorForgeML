@@ -17,3 +17,15 @@ numeric accuracy
 \description{
 Computes classification accuracy.
 }
+\details{
+Provides functionality for accuracy_score operations.
+}
+\examples{
+  y_true <- c(1,0,1,1)
+  y_pred <- c(1,0,0,1)
+  accuracy_score(y_true, y_pred)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

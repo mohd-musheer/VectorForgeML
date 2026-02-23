@@ -17,3 +17,14 @@ cleaned matrix
 \description{
 Removes columns with zero variance.
 }
+\details{
+Provides functionality for drop_constant_columns operations.
+}
+\examples{
+  x <- data.frame(a=c(1,1,1), b=c(1,2,3))
+  drop_constant_columns(x)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

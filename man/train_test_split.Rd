@@ -21,3 +21,15 @@ list
 \description{
 Splits dataset into training and testing sets.
 }
+\details{
+Provides functionality for train_test_split operations.
+}
+\examples{
+  X <- matrix(rnorm(20), nrow=10)
+  y <- sample(0:1, 10, replace=TRUE)
+  train_test_split(X, y, test_size=0.2)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

@@ -21,16 +21,145 @@ Type 'q()' to quit R.
 > source(file.path(R.home("share"), "R", "examples-header.R"))
 > options(warn = 1)
 > options(pager = "console")
+> base::assign(".ExTimings", "VectorForgeML-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
 > library('VectorForgeML')
 > 
 > base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 > base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("ColumnTransformer-class")
+> ### * ColumnTransformer-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: ColumnTransformer-class
+> ### Title: Column Transformer
+> ### Aliases: ColumnTransformer-class ColumnTransformer
+> 
+> ### ** Examples
+> 
+>   model <- ColumnTransformer$new(num_cols="A", cat_cols="B")
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("ColumnTransformer-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("DecisionTree-class")
+> ### * DecisionTree-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: DecisionTree-class
+> ### Title: Decision Tree Model
+> ### Aliases: DecisionTree-class DecisionTree
+> 
+> ### ** Examples
+> 
+>   model <- DecisionTree$new()
+>   X <- matrix(rnorm(20), nrow=10)
+>   y <- sample(0:1, 10, replace=TRUE)
+>   model$fit(X,y)
+>   model$predict(X)
+ [1] 1 1 0 1 1 1 1 1 0 0
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("DecisionTree-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("KMeans-class")
+> ### * KMeans-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: KMeans-class
+> ### Title: KMeans Clustering
+> ### Aliases: KMeans-class KMeans
+> 
+> ### ** Examples
+> 
+>   x <- matrix(rnorm(20), nrow=10)
+>   model <- KMeans$new()
+>   model$fit(x)
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("KMeans-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("KNN-class")
+> ### * KNN-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: KNN-class
+> ### Title: K-Nearest Neighbors Model
+> ### Aliases: KNN-class KNN
+> 
+> ### ** Examples
+> 
+>   model <- KNN$new(k=3, mode="classification")
+>   X <- matrix(rnorm(20), nrow=10)
+>   y <- sample(0:1, 10, replace=TRUE)
+>   model$fit(X,y)
+>   model$predict(X)
+ [1] 1 1 0 1 1 0 1 1 1 1
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("KNN-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("LabelEncoder-class")
+> ### * LabelEncoder-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: LabelEncoder-class
+> ### Title: Label Encoder
+> ### Aliases: LabelEncoder-class LabelEncoder
+> 
+> ### ** Examples
+> 
+>   enc <- LabelEncoder$new()
+>   x <- c("a", "b", "a")
+>   enc$fit(x)
+>   enc$transform(x)
+[1] 0 1 0
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("LabelEncoder-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("LinearRegression-class")
 > ### * LinearRegression-class
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: LinearRegression-class
 > ### Title: Linear Regression Model
 > ### Aliases: LinearRegression-class LinearRegression
@@ -55,12 +184,584 @@ Type 'q()' to quit R.
 > 
 > 
 > 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("LinearRegression-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("LogisticRegression-class")
+> ### * LogisticRegression-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: LogisticRegression-class
+> ### Title: Logistic Regression Model
+> ### Aliases: LogisticRegression-class LogisticRegression
+> 
+> ### ** Examples
+> 
+>   model <- LogisticRegression$new()
+>   X <- matrix(rnorm(20), nrow=10)
+>   y <- sample(0:1, 10, replace=TRUE)
+>   model$fit(X,y)
+>   model$predict(X)
+ [1] 1 1 1 1 1 1 1 1 1 1
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("LogisticRegression-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("MinMaxScaler-class")
+> ### * MinMaxScaler-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: MinMaxScaler-class
+> ### Title: Standard Scaler
+> ### Aliases: MinMaxScaler-class MinMaxScaler
+> 
+> ### ** Examples
+> 
+>   s <- MinMaxScaler$new()
+>   x <- matrix(rnorm(20), nrow=10)
+>   s$fit(x)
+>   s$transform(x)
+            [,1]       [,2]
+ [1,] 0.08604796 0.96565086
+ [2,] 0.64359463 0.69892831
+ [3,] 0.00000000 0.08819252
+ [4,] 1.02240710 0.00000000
+ [5,] 0.47930062 0.80651279
+ [6,] 0.37414158 0.58225609
+ [7,] 0.54426448 0.33709127
+ [8,] 0.79244320 0.84759215
+ [9,] 0.58060985 0.68157612
+[10,] 0.51236313 0.75368723
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("MinMaxScaler-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("OneHotEncoder-class")
+> ### * OneHotEncoder-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: OneHotEncoder-class
+> ### Title: One Hot Encoder
+> ### Aliases: OneHotEncoder-class OneHotEncoder
+> 
+> ### ** Examples
+> 
+>   enc <- OneHotEncoder$new()
+>   df <- data.frame(a=c("x","y","x"))
+>   enc$fit(df)
+>   enc$transform(df)
+     a_x a_y
+[1,]   1   0
+[2,]   0   1
+[3,]   1   0
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("OneHotEncoder-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("PCA-class")
+> ### * PCA-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: PCA-class
+> ### Title: Principal Component Analysis
+> ### Aliases: PCA-class PCA
+> 
+> ### ** Examples
+> 
+>   model <- PCA$new(n_components=2)
+>   X <- matrix(rnorm(30), nrow=10)
+>   model$fit(X)
+>   model$transform(X)
+            [,1]        [,2]
+ [1,]  1.2629362  1.05265061
+ [2,]  0.1409983  0.91580954
+ [3,] -0.8700856  0.20823823
+ [4,] -2.4635449 -1.85567845
+ [5,]  0.8760859  0.75349899
+ [6,] -0.2937786  0.07754450
+ [7,] -0.2650352 -0.02212226
+ [8,]  0.6949912 -1.33707914
+ [9,]  0.5723762 -0.34447681
+[10,]  0.3450564  0.55161480
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("PCA-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("Pipeline-class")
+> ### * Pipeline-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: Pipeline-class
+> ### Title: Pipeline
+> ### Aliases: Pipeline-class Pipeline
+> 
+> ### ** Examples
+> 
+>   model <- Pipeline$new(list(StandardScaler$new()))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("Pipeline-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("RandomForest-class")
+> ### * RandomForest-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: RandomForest-class
+> ### Title: Random Forest Model
+> ### Aliases: RandomForest-class RandomForest
+> 
+> ### ** Examples
+> 
+>   model <- RandomForest$new(ntrees=5)
+>   X <- matrix(rnorm(20), nrow=10)
+>   y <- sample(0:1, 10, replace=TRUE)
+>   model$fit(X,y)
+>   model$predict(X)
+ [1] 1 1 1 1 1 1 1 1 0 0
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("RandomForest-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("RidgeRegression-class")
+> ### * RidgeRegression-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: RidgeRegression-class
+> ### Title: Ridge Regression Model
+> ### Aliases: RidgeRegression-class RidgeRegression
+> 
+> ### ** Examples
+> 
+>   model <- RidgeRegression$new()
+>   X <- matrix(rnorm(20), nrow=10)
+>   y <- rnorm(10)
+>   model$fit(X,y,lambda=1.0)
+>   model$predict(X)
+ [1]  0.73267694 -0.12320042  0.21375056 -1.81297819  0.00889227  0.38015594
+ [7] -0.43966654 -0.30541639 -0.23988708  0.24894049
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("RidgeRegression-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("SoftmaxRegression-class")
+> ### * SoftmaxRegression-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: SoftmaxRegression-class
+> ### Title: Softmax Regression Model
+> ### Aliases: SoftmaxRegression-class SoftmaxRegression
+> 
+> ### ** Examples
+> 
+>   model <- SoftmaxRegression$new()
+>   X <- matrix(rnorm(20), nrow=10)
+>   y <- sample(0:2, 10, replace=TRUE)
+>   model$fit(X,y)
+>   model$predict(X)
+ [1] 0 1 2 1 0 2 1 0 0 1
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("SoftmaxRegression-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("StandardScaler-class")
+> ### * StandardScaler-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: StandardScaler-class
+> ### Title: Drop Constant Columns
+> ### Aliases: StandardScaler-class StandardScaler
+> 
+> ### ** Examples
+> 
+>   s <- StandardScaler$new()
+>   x <- matrix(rnorm(20), nrow=10)
+>   s$fit(x)
+>   s$transform(x)
+             [,1]       [,2]
+ [1,] -0.97190653  1.1808496
+ [2,]  0.06589991  0.1318339
+ [3,] -1.23987805 -0.8135329
+ [4,]  1.87433300 -2.3034228
+ [5,]  0.25276523  0.8191433
+ [6,] -1.22045645 -0.2746840
+ [7,]  0.45507643 -0.2478088
+ [8,]  0.77649606  0.6498192
+ [9,]  0.56826358  0.5351737
+[10,] -0.56059319  0.3226289
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("StandardScaler-class", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("accuracy_score")
+> ### * accuracy_score
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: accuracy_score
+> ### Title: Accuracy Score
+> ### Aliases: accuracy_score
+> 
+> ### ** Examples
+> 
+>   y_true <- c(1,0,1,1)
+>   y_pred <- c(1,0,0,1)
+>   accuracy_score(y_true, y_pred)
+[1] 0.75
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("accuracy_score", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("confusion_matrix")
+> ### * confusion_matrix
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: confusion_matrix
+> ### Title: Confusion Matrix
+> ### Aliases: confusion_matrix
+> 
+> ### ** Examples
+> 
+>   y_true <- c(1,0,1,1)
+>   y_pred <- c(1,0,0,1)
+>   confusion_matrix(y_true, y_pred)
+      Predicted
+Actual 0 1
+     0 1 0
+     1 1 2
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("confusion_matrix", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("confusion_stats")
+> ### * confusion_stats
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: confusion_stats
+> ### Title: Confusion Matrix Statistics
+> ### Aliases: confusion_stats
+> 
+> ### ** Examples
+> 
+>   cm <- matrix(c(10, 2, 1, 15), nrow=2)
+>   try({ confusion_stats(cm) })
+$accuracy
+[1] 0.8928571
+
+$precision
+[1] 0.8333333 0.9375000
+
+$recall
+[1] 0.9090909 0.8823529
+
+$f1
+[1] 0.8695652 0.9090909
+
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("confusion_stats", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("drop_constant_columns")
+> ### * drop_constant_columns
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: drop_constant_columns
+> ### Title: Drop Constant Columns
+> ### Aliases: drop_constant_columns
+> 
+> ### ** Examples
+> 
+>   x <- data.frame(a=c(1,1,1), b=c(1,2,3))
+>   drop_constant_columns(x)
+$X
+     [,1]
+[1,]    1
+[2,]    2
+[3,]    3
+
+$keep
+[1] 2
+
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("drop_constant_columns", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("f1_score")
+> ### * f1_score
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: f1_score
+> ### Title: F1 Score
+> ### Aliases: f1_score
+> 
+> ### ** Examples
+> 
+>   y_true <- c(1,0,1,1)
+>   y_pred <- c(1,0,0,1)
+>   f1_score(y_true, y_pred)
+[1] 0.8
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("f1_score", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("find_best_k")
+> ### * find_best_k
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: find_best_k
+> ### Title: Find Best K
+> ### Aliases: find_best_k
+> 
+> ### ** Examples
+> 
+>   x <- matrix(rnorm(200), nrow=100)
+>   y <- sample(0:1, 100, replace=TRUE)
+>   find_best_k(x, y, k_values=c(1,3,5))
+[1] 1
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("find_best_k", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("fit_linear_model")
+> ### * fit_linear_model
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: fit_linear_model
+> ### Title: Fit Linear Model (Fast C++ backend)
+> ### Aliases: fit_linear_model
+> 
+> ### ** Examples
+> 
+>   X <- matrix(rnorm(20), nrow=10)
+>   y <- rnorm(10)
+>   try({ fit_linear_model(X, y) })
+Reference class object of class "LinearRegression"
+Field "ptr":
+<pointer: 0x000002a48a1ff220>
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("fit_linear_model", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("plot_confusion_matrix")
+> ### * plot_confusion_matrix
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_confusion_matrix
+> ### Title: Plot Confusion Matrix
+> ### Aliases: plot_confusion_matrix
+> 
+> ### ** Examples
+> 
+>   cm <- matrix(c(10, 2, 1, 15), nrow=2)
+>   try({ plot_confusion_matrix(cm) })
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_confusion_matrix", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("precision_score")
+> ### * precision_score
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: precision_score
+> ### Title: Precision Score
+> ### Aliases: precision_score
+> 
+> ### ** Examples
+> 
+>   y_true <- c(1,0,1,1)
+>   y_pred <- c(1,0,0,1)
+>   precision_score(y_true, y_pred)
+[1] 1
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("precision_score", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("predict_linear_model")
+> ### * predict_linear_model
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: predict_linear_model
+> ### Title: Predict Linear Model
+> ### Aliases: predict_linear_model
+> 
+> ### ** Examples
+> 
+>   X <- matrix(rnorm(20), nrow=10)
+>   y <- rnorm(10)
+>   model <- fit_linear_model(X, y)
+>   predict_linear_model(model, X)
+ [1]  0.83454715 -0.12041847  0.23762712 -2.01063135  0.03389679  0.42771484
+ [7] -0.47341445 -0.31395292 -0.24340840  0.29130725
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("predict_linear_model", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("recall_score")
+> ### * recall_score
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: recall_score
+> ### Title: Recall Score
+> ### Aliases: recall_score
+> 
+> ### ** Examples
+> 
+>   y_true <- c(1,0,1,1)
+>   y_pred <- c(1,0,0,1)
+>   recall_score(y_true, y_pred)
+[1] 0.6666667
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("recall_score", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("train_test_split")
+> ### * train_test_split
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: train_test_split
+> ### Title: Train Test Split
+> ### Aliases: train_test_split
+> 
+> ### ** Examples
+> 
+>   X <- matrix(rnorm(20), nrow=10)
+>   y <- sample(0:1, 10, replace=TRUE)
+>   train_test_split(X, y, test_size=0.2)
+$X_train
+           [,1]        [,2]
+[1,] -0.8204684 -0.04493361
+[2,]  0.5757814  0.82122120
+[3,]  0.7383247  0.94383621
+[4,]  1.5952808 -2.21469989
+[5,] -0.6264538  1.51178117
+[6,]  0.1836433  0.38984324
+[7,] -0.8356286 -0.62124058
+[8,]  0.4874291 -0.01619026
+
+$X_test
+           [,1]      [,2]
+[1,]  0.3295078 1.1249309
+[2,] -0.3053884 0.5939013
+
+$y_train
+[1] 1 0 1 1 1 1 0 1
+
+$y_test
+[1] 1 0
+
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("train_test_split", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > ### * <FOOTER>
 > ###
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.09 0 0.22 NA NA 
+Time elapsed:  1.26 0.07 1.4 NA NA 
 > grDevices::dev.off()
 null device 
           1 

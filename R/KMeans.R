@@ -3,7 +3,17 @@
 #' Unsupervised clustering algorithm.
 #'
 #' @return KMeans object
-#' @export
+#'
+#' @details
+#' Provides functionality for KMeans operations.
+#' @seealso \code{\link{VectorForgeML-package}}
+#' @examples
+#'   x <- matrix(rnorm(20), nrow=10)
+#'   model <- KMeans$new()
+#'   model$fit(x)
+#'
+#' @export KMeans
+#' @exportClass KMeans
 KMeans <- setRefClass(
   "KMeans",
   fields=list(ptr="externalptr"),

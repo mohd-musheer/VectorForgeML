@@ -19,3 +19,15 @@ numeric precision
 \description{
 Computes precision metric.
 }
+\details{
+Provides functionality for precision_score operations.
+}
+\examples{
+  y_true <- c(1,0,1,1)
+  y_pred <- c(1,0,0,1)
+  precision_score(y_true, y_pred)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}

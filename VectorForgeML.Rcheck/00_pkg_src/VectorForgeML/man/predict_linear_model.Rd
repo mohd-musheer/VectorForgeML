@@ -17,3 +17,16 @@ numeric vector
 \description{
 Predict values using trained linear model.
 }
+\details{
+Provides functionality for predict_linear_model operations.
+}
+\examples{
+  X <- matrix(rnorm(20), nrow=10)
+  y <- rnorm(10)
+  model <- fit_linear_model(X, y)
+  predict_linear_model(model, X)
+
+}
+\seealso{
+\code{\link{VectorForgeML-package}}
+}
