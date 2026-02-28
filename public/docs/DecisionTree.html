@@ -77,8 +77,15 @@
                 </p>
                 <div class="glass-panel"
                     style="padding:1rem; margin:1rem 0; font-family:'Times New Roman', serif; font-size:1.1rem; text-align:center;">
-                    $$ \min_{j, s} \left[ \min_{c_1} \sum_{x_i \in R_1(j,s)} (y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in
-                    R_2(j,s)} (y_i - c_2)^2 \right] $$</div>
+                    $$
+                    \min_{j,s}
+                    \left[
+                    \sum_{x_i \in R_1(j,s)} (y_i - \bar{y}_{R_1})^2
+                    +
+                    \sum_{x_i \in R_2(j,s)} (y_i - \bar{y}_{R_2})^2
+                    \right]
+                    $$
+                </div>
             </section>
 
 
