@@ -1,6 +1,12 @@
 # 🚀 VectorForgeML
 ### High-Performance Machine Learning Framework for R & C++
 
+[![CRAN Version](https://www.r-pkg.org/badges/version/VectorForgeML)](https://cran.r-project.org/package=VectorForgeML)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/VectorForgeML)](https://cran.r-project.org/package=VectorForgeML)
+[![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](LICENSE)
+[![R-CMD-check](https://github.com/mohd-musheer/VectorForgeML/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mohd-musheer/VectorForgeML/actions)
+[![CRAN checks](https://cranchecks.info/badges/summary/VectorForgeML)](https://cran.r-project.org/web/checks/check_results_VectorForgeML.html)
+
 <p align="center">
   <img src="public/assets/images/VectorForgeML_Logo.png" alt="VectorForgeML Logo" width="200"/>
 </p>
@@ -37,18 +43,16 @@ The official research paper describing VectorForgeML is available here:
 
 ---
 
-## 📦 Installation
+## 🎉 Officially on CRAN
 
-Install directly from GitHub using `remotes`:
+VectorForgeML is officially published on CRAN and distributed globally.
+
+### Install from CRAN (Recommended)
 
 ```r
-# Install remotes if not already installed
-install.packages("remotes")
-
-# Install VectorForgeML
-remotes::install_github("mohd-musheer/VectorForgeML")
-
+install.packages("VectorForgeML")
 library(VectorForgeML)
+
 ```
 
 ---
@@ -86,7 +90,7 @@ We have implemented a wide range of algorithms, verified with real-world dataset
 
 ---
 
-## � Quick Start Example
+## 🚀 Quick Start Example
 
 Here is how you can build a powerful pipeline in just a few lines of R:
 
@@ -146,9 +150,17 @@ Passionate about High-Performance Computing (HPC) and System Design. VectorForge
 
 ---
 
+## 📖 Citation
+
+If you use VectorForgeML in research, please cite:
+
+Musheer, M. (2026). VectorForgeML: High-Performance Machine Learning Framework. CRAN.  
+DOI: 10.32614/CRAN.package.VectorForgeML
+
+```markdown
 ## 📜 License
 
-This project is licensed under the **MIT License** - free to use and modify.
+This project is licensed under the **Apache License 2.0**.
 
 ---
 
