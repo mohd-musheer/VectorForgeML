@@ -67,7 +67,7 @@ We have implemented a wide range of algorithms, verified with real-world dataset
 | **Linear Regression** | Regression | OLS with BLAS/LAPACK optimization. | [View Notebook](https://www.kaggle.com/code/almusheer/linear-regression-vectorforgeml) |
 | **Logistic Regression** | Classification | Gradient Descent with Sigmoid activation. | [View Notebook](https://www.kaggle.com/code/almusheer/logistic-regression-vectorforgeml) |
 | **Ridge Regression** | Regression | L2 Regularized Linear Regression using Cholesky. | [View Notebook](https://www.kaggle.com/code/almusheer/ridge-regression-vectorforgeml) |
-| **Softmax Regression** | Classification | Multi-class classification with Log-Sum-Exp trick. | [View Notebook](https://www.kaggle.com/code/almusheer/softmax-regression-vectorforgemlml) |
+| **Softmax Regression** | Classification | Multi-class classification with Log-Sum-Exp trick. | [View Notebook](https://www.kaggle.com/code/almusheer/softmax-regression-vectorforgeml) |
 | **Decision Tree** | Reg/Class | Recursive partitioning with distinct C++ graph pointers. | [View Notebook](https://www.kaggle.com/code/almusheer/decision-tree-vectorforge-ml) |
 | **Random Forest** | Ensemble | Parallelized ensemble of decision trees. | [View Notebook](https://www.kaggle.com/code/almusheer/randomforest-vectorforgeml) |
 | **KNN** | Reg/Class | K-Nearest Neighbors with `std::partial_sort` optimization. | [View Notebook](https://www.kaggle.com/code/almusheer/knn-vectorforgeml) |
@@ -159,6 +159,20 @@ If you use VectorForgeML in research, please cite:
 
 Musheer, M. (2026). VectorForgeML: High-Performance Machine Learning Framework. CRAN.  
 DOI: 10.32614/CRAN.package.VectorForgeML
+
+## Hackathon Submission
+
+This project was submitted to the **Quantum Sprint Hackathon 2026** on Devpost.
+
+VectorForgeML is a high-performance machine learning framework with a C++ backend designed to accelerate model training in R.
+
+Resources:
+- Documentation: https://documentation.work.gd
+- CRAN Package: https://cran.r-project.org/package=VectorForgeML
+- Research Paper: paper/VectorForgeML_Paper.pdf
+
+## Hackathon
+Submitted to: Quantum Sprint Hackathon 2026
 
 ## 📜 License
 
